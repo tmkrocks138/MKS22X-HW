@@ -3,17 +3,21 @@ public class Recursion{
 	return "Khanna,Tara";
     }
     public static double sqrt(double n){
+	if (n < 0){
+	    throw new IllegalArgumentException();
+	}
 	if (n == 0.0){
 	    return 0.0;
 	}
-	return help(10, 1);
+	return help(n, 1);
     }
     public static double help(double n, double guess){
 	if (isCloseEnough(guess*guess, n)){
 	    return guess;
 	}
+	//System.out.println(guess);
 	double better = ((n/guess)+guess)/2.0;
-	return help(n,better);
+	return help(n, better);
 	//return 0.0;
     }
     private static boolean isCloseEnough(double a,double b){
@@ -29,4 +33,3 @@ public class Recursion{
 	}
     }
 }
-
