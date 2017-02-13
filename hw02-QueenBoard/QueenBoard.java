@@ -36,16 +36,16 @@ public class QueenBoard{
 	  remove queen
 	*/
 	//if ();
-	for (int row = 0; row < board.length; row++){ //FIX COL
-	    if (board[col][row]==0){
-		addQueen(row, col);
-		if (solveH(col+1)){
-		    return true;
+	for (int row = 0; row < board.length; row++){ 
+		if (board[col][row]==0){
+		    addQueen(row, col);
+		    if (solveH(col+1)){
+			return true;
+		    }
+		    else{
+			removeQueen(row, col);
+		    }
 		}
-		else{
-		    removeQueen(row, col);
-		}
-	    }
 	  
 	}
 	return false;
@@ -80,11 +80,26 @@ public class QueenBoard{
 	    board[i][c] = board[i][c]+1;
 	    board[r][i] = board[r][i]+1;
 	}
+	for(int col = c+1, row = r+1; row < board.length && col < board.length; row++, col++){
+	    board[row][col] = board[row][col]+1;
+	}
+	
+	for(int col = c+1,  row = r-1; row < board.length && col < board.length; row--, col++){
+	    board[row][col] = board[row][col]+1;
+	}
+	for(int col = c-1, row = r+1; row < board.length && col < board.length; row++, col--){
+	    board[row][col] = board[row][col]+1;
+	}
+	for(int col = c-1, row = r-1; row < board.length && col < board.length; row--, col--){
+	    board[row][col] = board[row][col]+1;
+	}
+
 
 	//diagonal HOW?!?!
 	//for (int i=1; c+i<board.length; )
 	
     }
+    
     private void removeQueen(int r, int c){
 	board[r][c]=0;
 	//Cross
@@ -92,9 +107,19 @@ public class QueenBoard{
 	    board[i][c] = board[i][c]-1;
 	    board[r][i] = board[r][i]-1;
 	}
-
-	//diagonal HOW?!?!
-	//for (int i=1; c+i<board.length; )
+	for(int col = c+1, row = r+1; row < board.length && col < board.length; row++, col++){
+	    board[row][col] = board[row][col]-1;
+	}
+	
+	for(int col = c+1, row = r-1; row < board.length && col < board.length; row--, col++){
+	    board[row][col] = board[row][col]-1;
+	}
+	for(int col = c-1, row = r+1; row < board.length && col < board.length; row++, col--){
+	    board[row][col] = board[row][col]-1;
+	}
+	for(int col = c-1, row = r-1; row < board.length && col < board.length; row--, col--){
+	    board[row][col] = board[row][col]-1;
+	}
 
     }
 }
