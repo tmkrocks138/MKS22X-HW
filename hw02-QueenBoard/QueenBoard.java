@@ -25,6 +25,27 @@ public class QueenBoard{
     }
 
     private boolean solveH(int col){
+	int row = 0;
+	/*
+	  if no safe{false}
+	  for every col, while the row is less than length,
+	      if spot is 0
+	          add queen
+		  if solve next
+		      true
+		  else
+		      remove queen
+	*/
+	//if ();
+	for (col; row < board.length; row++){
+	    if (board[col][row]==0){
+		//add queen
+		if (solve(col+1)){
+		    return true;
+		}
+	    }
+	  
+	}
 	return false;
     }
 
