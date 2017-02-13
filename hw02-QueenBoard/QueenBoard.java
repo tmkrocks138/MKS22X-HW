@@ -23,7 +23,7 @@ public class QueenBoard{
 
     private boolean solveH(int col){
         if (col >= board.length){
-	    return false;
+	    return true;
 	}
 	/*
 	  if no safe{false}
@@ -37,7 +37,7 @@ public class QueenBoard{
 	*/
 	//if ();
 	for (int row = 0; row < board.length; row++){ 
-		if (board[col][row]==0){
+		if (board[row][col]==0){
 		    addQueen(row, col);
 		    if (solveH(col+1)){
 			return true;
@@ -63,16 +63,22 @@ public class QueenBoard{
      *all others are displayed as underscores '_'
      */
     public String toString(){
-    	return "";
+	String stringy = "";
+	for(int r = 0; r<board.length; r++){
+	    for(int c = 0; c<board.length; c++){
+		if(board[r][c]==-1){
+		    stringy ="Q ";
+		}
+		else{
+		    stringy="_ ";
+		}
+	    }
+	    stringy = "\n"
+	}
+    	return stringy;
     }
 
-    /*Used in WordSearch:
-      for(int i = 0; i<word.length(); i++){
-      if (data[row+(i*r)][col+(i*c)]!='_'&& data[row+(i*r)][col+(i*c)]!=word.charAt(i)){
-      return false;
-      }
-      }
-    */
+
     private void addQueen(int r,int c){
 	board[r][c]=-1;
 	//Cross
@@ -93,10 +99,6 @@ public class QueenBoard{
 	for(int col = c-1, row = r-1; row < board.length && col < board.length; row--, col--){
 	    board[row][col] = board[row][col]+1;
 	}
-
-
-	//diagonal HOW?!?!
-	//for (int i=1; c+i<board.length; )
 	
     }
     
