@@ -17,14 +17,14 @@ public class QueenBoard{
      *all n queens. Uses solveH
      */
     public void solve(){
-	if (!solveH(0)){
-	    //error
-	}
+	solveH(0);
 	
     }
 
     private boolean solveH(int col){
-	int row = 0;
+        if (col >= board.length){
+	    return false;
+	}
 	/*
 	  if no safe{false}
 	  for every col, while the row is less than length,
@@ -36,14 +36,14 @@ public class QueenBoard{
 	  remove queen
 	*/
 	//if ();
-	for (col; row < board.length; row++){ //FIX COL
+	for (int row = 0; row < board.length; row++){ //FIX COL
 	    if (board[col][row]==0){
-		//add queen
-		if (solve(col+1)){
+		addQueen(row, col);
+		if (solveH(col+1)){
 		    return true;
 		}
 		else{
-		    //remove queen
+		    removeQueen(row, col);
 		}
 	    }
 	  
@@ -80,11 +80,21 @@ public class QueenBoard{
 	    board[i][c] = board[i][c]+1;
 	    board[r][i] = board[r][i]+1;
 	}
-	//diagonal 
 
+	//diagonal HOW?!?!
+	//for (int i=1; c+i<board.length; )
 	
     }
     private void removeQueen(int r, int c){
+	board[r][c]=0;
+	//Cross
+	for(int i=0; i < board.length; i++){
+	    board[i][c] = board[i][c]-1;
+	    board[r][i] = board[r][i]-1;
+	}
+
+	//diagonal HOW?!?!
+	//for (int i=1; c+i<board.length; )
 
     }
 }
