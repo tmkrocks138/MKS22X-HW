@@ -16,12 +16,11 @@ public class QueenBoard{
      *final configuration of the board after adding 
      *all n queens. Uses solveH
      */
-    public boolean solve()
-    {
-	if (board.length <= 3){
-	    return false;
+    public void solve(){
+	if (!solveH(0)){
+	    //error
 	}
-	return solveH(0);
+	
     }
 
     private boolean solveH(int col){
@@ -29,19 +28,22 @@ public class QueenBoard{
 	/*
 	  if no safe{false}
 	  for every col, while the row is less than length,
-	      if spot is 0
-	          add queen
-		  if solve next
-		      true
-		  else
-		      remove queen
+	  if spot is 0
+	  add queen
+	  if solve next
+	  true
+	  else
+	  remove queen
 	*/
 	//if ();
-	for (col; row < board.length; row++){
+	for (col; row < board.length; row++){ //FIX COL
 	    if (board[col][row]==0){
 		//add queen
 		if (solve(col+1)){
 		    return true;
+		}
+		else{
+		    //remove queen
 		}
 	    }
 	  
@@ -62,5 +64,27 @@ public class QueenBoard{
      */
     public String toString(){
     	return "";
+    }
+
+    /*Used in WordSearch:
+      for(int i = 0; i<word.length(); i++){
+      if (data[row+(i*r)][col+(i*c)]!='_'&& data[row+(i*r)][col+(i*c)]!=word.charAt(i)){
+      return false;
+      }
+      }
+    */
+    private void addQueen(int r,int c){
+	board[r][c]=-1;
+	//Cross
+	for(int i=0; i < board.length; i++){
+	    board[i][c] = board[i][c]+1;
+	    board[r][i] = board[r][i]+1;
+	}
+	//diagonal 
+
+	
+    }
+    private void removeQueen(int r, int c){
+
     }
 }
