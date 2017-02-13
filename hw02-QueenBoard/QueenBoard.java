@@ -37,15 +37,15 @@ public class QueenBoard{
 	*/
 	//if ();
 	for (int row = 0; row < board.length; row++){ 
-		if (board[row][col]==0){
-		    addQueen(row, col);
-		    if (solveH(col+1)){
-			return true;
-		    }
-		    else{
-			removeQueen(row, col);
-		    }
+	    if (board[row][col]==0){
+		addQueen(row, col);
+		if (solveH(col+1)){
+		    return true;
 		}
+		else{
+		    removeQueen(row, col);
+		}
+	    }
 	  
 	}
 	return false;
@@ -58,6 +58,33 @@ public class QueenBoard{
     public int getSolutionCount(){
     	return solutionCount;
     }
+    public void countSolutions(){
+	
+    }
+
+    private boolean countingH(int col){
+	//SIMILAR TO SOLVE
+	int sol = 0;
+	if (col >= board.length){
+	    return true;
+	}
+
+	for (int row = 0; row < board.length; row++){ 
+	    if (board[row][col]==0){
+		addQueen(row, col);
+		if (countingH(col+1)){
+		    sol++;
+		    return true;
+		}
+		else{
+		    removeQueen(row, col);
+		}
+	    }
+	  
+	}
+	return false;
+    }
+    
     /**toString
      *and all nunbers that represent queens are replaced with 'Q' 
      *all others are displayed as underscores '_'
@@ -73,8 +100,8 @@ public class QueenBoard{
 		    stringy="_ ";
 		}
 	    }
-	    stringy = "\n"
-	}
+	    stringy = "\n";
+		}
     	return stringy;
     }
 
