@@ -25,10 +25,9 @@ public class QueenBoard{
 	    return true;
 	}
 	for (int row = 0; row < board.length; row++){ 
-	    if (board[row][col]==0){
+	    if (board[row][col] == 0){
 		addQueen(row, col);
-		if (solveH(col+1)){
-		    System.out.println(toString());
+		if (solveH(col + 1)){
 		    return true;
 		}
 		else{
@@ -82,7 +81,7 @@ public class QueenBoard{
      *and all nunbers that represent queens are replaced with 'Q' 
      *all others are displayed as underscores '_'
      */
-    /*   public String toString(){
+    public String toString(){
 	String stringy = "";
 	for(int r = 0; r<board.length; r++){
 	    for(int c = 0; c<board.length; c++){
@@ -96,75 +95,63 @@ public class QueenBoard{
 	    stringy += "\n";
 	}
     	return stringy;
-    }*/
-    public String toString(){
-	String stringy = "";
-	for(int r = 0; r<board.length; r++){
-	    for(int c = 0; c<board.length; c++){
-		if(board[r][c]==-1){
-		    stringy +="Q ";
+    }
+   
+	/*	private String toHelp(){
+	    String stringy = "";
+	    for(int r = 0; r<board.length; r++){
+		for(int c = 0; c<board.length; c++){
+		    if(board[r][c]==-1){
+			stringy +="Q ";
+		    }
+		    else{
+			stringy+=board[r][c]+" ";
+		    }
 		}
-		else{
-		    stringy+=board[r][c]+" ";
-		}
+		stringy += "\n";
 	    }
-	    stringy += "\n";
+	    return stringy;
 	}
-    	return stringy;
-    }
+	*/
+
+	
+      	private void addQueen(int r, int c){
+	    for(int i = c+1; i < board.length; i++){
+		board[r][i] = board[r][i] + 1;
+	    
+	    }
+	    for(int col = c, row = r; row < board.length && col < board.length; row++, col++){
+		board[row][col] = board[row][col]+1;
+	    }
+	
+	    for(int col = c,  row = r; row > -1 && col < board.length; row--, col++){
+		board[row][col] = board[row][col]+1;
+	    }
+	    board[r][c]=-1;
+	}
     
-
-
-    private void addQueen(int r, int c){
-
-	//Cross
-	for(int i = r; i < board.length; i++){
-	    board[i][c] = board[i][c]+1;
-	    //board[r][i] = board[r][i]+1;
-	}
-	for(int col = c, row = r; row < board.length && col < board.length; row++, col++){
-	    board[row][col] = board[row][col]+1;
+	private void removeQueen(int r, int c){
+	    for(int i = c+1; i < board.length; i++){
+		board[r][i] = board[r][i] - 1;
+	    
+	    }
+	    for(int col = c, row = r; row < board.length && col < board.length; row++, col++){
+		board[row][col] = board[row][col] - 1;
+	    }
+	
+	    for(int col = c,  row = r; row > -1 && col < board.length; row--, col++){
+		board[row][col] = board[row][col] - 1;
+	    }
+	    board[r][c]=0;
 	}
 	
-	for(int col = c,  row = r; row > -1 && col < board.length; row--, col++){
-	    board[row][col] = board[row][col]+1;
+	public static void main(String[] args){
+	    QueenBoard b = new QueenBoard(4);
+	    QueenBoard a = new QueenBoard(4);
+	    b.solve();
+	    System.out.println(b);
+	    System.out.println(a.getSolutionCount());
+	    a.countSolutions();
+	    System.out.println(a.getSolutionCount());
 	}
-	/*	for(int col = c-1, row = r+1; row < board.length && col < board.length; row++, col--){
-		board[row][col] = board[row][col]+1;
-		}
-		for(int col = c-1, row = r-1; row < board.length && col < board.length; row--, col--){
-		board[row][col] = board[row][col]+1;
-		}*/
-	board[r][c]=-1;
     }
-    
-    private void removeQueen(int r, int c){
-	board[r][c]=0;
-	//Cross
-	for(int i=0; i < board.length; i++){
-	    board[i][c] = board[i][c]-1;
-	    board[r][i] = board[r][i]-1;
-	}
-	for(int col = c+1, row = r+1; row < board.length && col < board.length; row++, col++){
-	    board[row][col] = board[row][col]-1;
-	}
-	
-	for(int col = c+1, row = r-1; row > -1 && col < board.length; row--, col++){
-	    board[row][col] = board[row][col]-1;
-	}
-	/*	for(int col = c-1, row = r+1; row < board.length && col < board.length; row++, col--){
-		board[row][col] = board[row][col]-1;
-		}
-		for(int col = c-1, row = r-1; row < board.length && col < board.length; row--, col--){
-		board[row][col] = board[row][col]-1;
-		}*/
-
-    }
-    public static void main(String[] args){
-	QueenBoard b = new QueenBoard(4);
-	b.solve();
-	System.out.println(b);
-	b.removeQueen(0,0);
-	System.out.println(b);
-    }
-}
