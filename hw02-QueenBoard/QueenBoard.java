@@ -146,13 +146,13 @@ public class QueenBoard{
 	board[r][c]=0;
     }
 	
-    public static void main(String[] args){
-	QueenBoard b = new QueenBoard(16);
-	QueenBoard a = new QueenBoard(11);
+    /*    public static void main(String[] args){
+	QueenBoard b = new QueenBoard(20);
+	QueenBoard a = new QueenBoard(14);
 	b.solve();
 	System.out.println(b);
 	System.out.println(a.getSolutionCount());
 	a.countSolutions();
 	System.out.println(a.getSolutionCount());
-    }
+	}*/
 }
