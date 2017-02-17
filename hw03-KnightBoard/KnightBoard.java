@@ -45,7 +45,9 @@ else->false
 	    }
 	    else{
 		removeKnight(row, col);
-		//TRY AGAIN
+		return false;
+		//TRY AGAIN 
+		//return False accordings
 	    }
 	    
 	}
