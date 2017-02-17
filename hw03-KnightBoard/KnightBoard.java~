@@ -31,7 +31,7 @@ public class KnightBoard{
 	    return true;
 	}
 	if (valid(row, col)){
-	   return true;
+	   
 	}
 
 	/*
@@ -48,6 +48,9 @@ else->false
     
     private boolean valid(int row, int col){
 	return board[row][col]==0;
+    }
+    private void addKnight(int r, int c, int level){
+	
     }
 
 
