@@ -23,7 +23,7 @@ public class KnightBoard{
     } //blank if you never called solve or when there is no solution
 
     public void solve(){
-	System.out.println(solveH(0,0,0));
+	System.out.println(solveH(0,0,1));
     } 
 	/*
 if done()->true
@@ -35,7 +35,7 @@ if isAValidSquare()
 else->false
 	 */
     private boolean solveH(int row ,int col, int level){
-	if (level == squaresnum){
+	if (level == squaresnum+1){
 	    return true;
 	}
 	if (valid(row, col)){
