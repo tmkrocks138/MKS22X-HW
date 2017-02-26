@@ -45,6 +45,7 @@ public class KnightBoard{
 	    }
 	    else{
 		removeKnight(row, col);
+		//HELP!!!!!
 		if (row > rowL/2 || col > columnL/2){
 		    return solveH(row, col + 1, level)||solveH(row+1, col, level);
 		}
