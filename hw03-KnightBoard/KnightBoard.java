@@ -35,7 +35,7 @@ public class KnightBoard{
       else->false
     */
     private boolean solveH(int row ,int col, int level){
-	if (level == squaresnum+1){
+	if (level == squaresnum + 1){
 	    return true;
 	}
 	if (valid(row, col)){
@@ -45,16 +45,12 @@ public class KnightBoard{
 	    }
 	    else{
 		removeKnight(row, col);
-		if (row > rowL/2 || col > columnL/2){
+/*		if (row <= rowL/2 || col <= columnL/2){
 		    return solveH(row, col + 1, level)||solveH(row+1, col, level);
 		}
-		//	return false;
+*/		return false;
 	    }
-	}
-	/*	    if (row >= rowL/2 && col >= columnL/2){
-		    return solveH(row, col + 1, level)||solveH(row+1, col, level);
-		    }
-	*/
+	}	    
 	return false;
     }
     
@@ -83,7 +79,7 @@ public class KnightBoard{
     }
 
     public static void main(String[] args){
-	KnightBoard k = new KnightBoard(2, 7);
+	KnightBoard k = new KnightBoard(4, 6);
 	k.solve();
 	System.out.println(k);
     }
