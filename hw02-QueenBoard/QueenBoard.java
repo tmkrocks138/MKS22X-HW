@@ -4,7 +4,7 @@ public class QueenBoard{
 
     public QueenBoard(int size){
 	board = new int[size][size];
-	//solutionCount = -1;
+	solutionCount = 0;
     }
 
     /**
@@ -44,13 +44,21 @@ public class QueenBoard{
      *The board should be reset after this is run.    
      */
     public int getSolutionCount(){
-	if (solutionCount == 0 && (board.length!=2 || board.length != 3)){
+        if (board.length==2||board.length==3){
+	   return solutionCount = 0;
+	}
+	else if (solutionCount == 0){
 	    return -1;
 	}
 	return solutionCount;
     }
     public void countSolutions(){
-	countingH(0, false);
+	//if (board.length==2||board.length==3){
+	//    solutionCount = 0;
+	//}
+	//else{
+	    countingH(0, false);
+        //}
     }
 
     private boolean countingH(int col, boolean done){
