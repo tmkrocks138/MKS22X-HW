@@ -25,15 +25,15 @@ public class KnightBoard{
     public void solve(){
 	System.out.println(solveH(0,0,1));
     } 
-	/*
-if done()->true
-if isAValidSquare()
-    markboard()
+    /*
+      if done()->true
+      if isAValidSquare()
+      markboard()
       if true
-        solve(next knight)
+      solve(next knight)
       else-->unmarkboard try again
-else->false
-	 */
+      else->false
+    */
     private boolean solveH(int row ,int col, int level){
 	if (level == squaresnum+1){
 	    return true;
@@ -45,12 +45,15 @@ else->false
 	    }
 	    else{
 		removeKnight(row, col);
-		return false;
-		//TRY AGAIN 
-		//return False accordings
+/*		if (row <= rowL/2 || col <= columnL/2){
+		    return solveH(row, col + 1, level)||solveH(row+1, col, level);
+		}
+*/		return false;
 	    }
-	    
-	}
+	}	    
+        if (row <= rowL/2 && col <= columnL/2){
+		    return solveH(row, col + 1, level)||solveH(row+1, col, level);
+		    }
 	return false;
     }
     
@@ -79,7 +82,7 @@ else->false
     }
 
     public static void main(String[] args){
-	KnightBoard k = new KnightBoard(5, 5);
+	KnightBoard k = new KnightBoard(3, 6);
 	k.solve();
 	System.out.println(k);
     }
