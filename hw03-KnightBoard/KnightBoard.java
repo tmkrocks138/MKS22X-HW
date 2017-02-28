@@ -7,9 +7,17 @@ public class KnightBoard{
 	columnL = board[0].length;
 	squaresnum = startingRows * startingCols;
     }
+
+    private void clearBoard(){
+	for (int r = 0; r < rowL; r++){
+	    for(int c = 0; c < columnL; c++){
+		board[r][c]=0;
+	    }
+	}
+    }
     
     public String toString(){
-	String stringy = "";
+	String stringy = "\n";
 	for (int r = 0; r < rowL; r++){
 	    for (int c = 0; c < columnL; c++){
 		if (board[r][c] < 10){
@@ -23,7 +31,7 @@ public class KnightBoard{
     } //blank if you never called solve or when there is no solution
 
     public void solve(){
-	System.out.println(solveH(0,0,1));
+	solveH(0,0,1);
     } 
     /*
       if done()->true
@@ -35,6 +43,10 @@ public class KnightBoard{
       else->false
     */
     private boolean solveH(int row ,int col, int level){
+	if (rowL == 1 && columnL == 1){
+	    addKnight(0,0,1);
+	    return true;
+	}
 	if (level == squaresnum + 1){
 	    return true;
 	}
@@ -50,7 +62,10 @@ public class KnightBoard{
 		}
 */		return false;
 	    }
-	}	    
+	}
+	//if (row <= rowL/2 && col <= columnL/2){
+	//    return solveH(row, col + 1, level)||solveH(row+1, col, level);
+	//}
 	return false;
     }
     
@@ -78,9 +93,9 @@ public class KnightBoard{
 	board[r][c] = 0;
     }
 
-    public static void main(String[] args){
-	KnightBoard k = new KnightBoard(4, 6);
-	k.solve();
-	System.out.println(k);
-    }
+    //public static void main(String[] args){
+    //	KnightBoard k = new KnightBoard(5, 4);
+    //	k.solve();
+    //	System.out.println(k);
+    // }
 }
