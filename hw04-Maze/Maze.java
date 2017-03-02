@@ -95,11 +95,45 @@ public class Maze{
             wait(20);
         }
 
-	if(getSpot(r,c)=='E'){
+	if(getSpot(row, col)=='E'){
 	    return true;
 	}
 	else{
+	    setSpot(row, col, '@');
+	    if(validSpot(row - 1, col) && getSpot(row - 1, col)==' '){
+		return solve(row - 1, col);
+	    }
+	    else if (validSpot(row, col + 1) && getSpot(row, col + 1) == ' '){
+		return solve(row, col + 1);
+	    }
+	    else if (validSpot(row + 1, col) && getSpot(row + 1, col) == ' '){
+		return solve(row + 1, col);
+	    }
+	    else if (validSpot(row, col - 1) && getSpot(row, col - 1) == ' '){
+		return solve(row, col - 1);
+	    }
+
+	    /*   IS IT THIS???
+
+	    if(validSpot(row - 1, col) && getSpot(row - 1, col)==' ' && solve(row - 1, col)){
+	        return true;
+	    }
+	    else if (validSpot(row, col + 1) && getSpot(row, col + 1) == ' ' && solve(row, col + 1)){
+		return true;
+	    }
+	    else if (validSpot(row + 1, col) && getSpot(row + 1, col) == ' ' && solve(row + 1, col)){
+		return true;
+	    }
+	    else if (validSpot(row, col - 1) && getSpot(row, col - 1) == ' ' && solve(row, col - 1)){
+		return true;
+	    }
+	     */
 	    
+	    else{
+		setSpot(row, col, '.');
+		return false;
+	    }
+	  
 	}
         //COMPLETE SOLVE
 
@@ -107,11 +141,16 @@ public class Maze{
     }
 
     public char getSpot(int row, int col){
-	return maze[r][c];
+	return maze[row][col];
     }
     public void setSpot(int row, int col, char setting){
-	maze[r][c]=setting;
+	maze[row][col]=setting;
     }
+
+    private boolean validSpot(int row, int col){
+	return (maze.length > row && row >= 0) && (maze[0].length > col && col >= 0);
+    }
+    
 
 
 }
