@@ -25,7 +25,12 @@ public class Maze{
     public Maze(String filename){
 	Scanner in = new Scanner(new File(filename));
         //COMPLETE CONSTRUCTOR
+
+
+
+	setAnimate(false);
     }
+
     
 
     private void wait(int millis){ //ADDED SORRY!
@@ -63,8 +68,9 @@ public class Maze{
             //Initialize starting row and startint col with the location of the S. 
 
             maze[startr][startc] = ' ';//erase the S, and start solving!
-            return solve(startr,startc);
+            return solveH(startr,startc);
     }
+
 
     /*
       Recursive Solve function:
@@ -89,9 +95,22 @@ public class Maze{
             wait(20);
         }
 
+	if(getSpot(r,c)=='E'){
+	    return true;
+	}
+	else{
+	    
+	}
         //COMPLETE SOLVE
 
         return false; //so it compiles
+    }
+
+    public char getSpot(int row, int col){
+	return maze[r][c];
+    }
+    public void setSpot(int row, int col, char setting){
+	maze[r][c]=setting;
     }
 
 
