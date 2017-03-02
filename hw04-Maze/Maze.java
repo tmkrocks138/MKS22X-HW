@@ -1,11 +1,13 @@
-import java.util.*;
-import java.io.*;
+import java.util.*;//random, scanner, arrayList
+import java.io.*;//file, filenotfourd
 
 public class Maze{
 
 
     private char[][]maze;
     private boolean animate;
+
+    
 
     /*Constructor loads a maze text file, and sets animate to false by default.
       1. The file contains a rectangular ascii maze, made with the following 4 characters:
@@ -21,7 +23,7 @@ public class Maze{
     */
 
     public Maze(String filename){
-
+	Scanner in = new Scanner(new File(filename));
         //COMPLETE CONSTRUCTOR
     }
     
