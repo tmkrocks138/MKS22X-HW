@@ -23,17 +23,26 @@ public class Maze{
     */
 
     public Maze(String filename){
+//Check for file
 	try{
-	    File files = new File(filename)
+	    File files = new File(filename);
 	}
 	catch(FileNotFoundException e){
 	    System.exit(0);
 	}
+
 	Scanner in = new Scanner(files);
+//get a BIG string of doc
+	String bigStringy = in.nextLine();
 	while (in.hasNextLine()){
-	    String stringy = in.nextLine();
-             
+	    bigStringy += "\n" + in.nextLine();    
 	}
+
+	String[] eachLine = bigStringy.split("\n");
+
+
+
+	
         //COMPLETE CONSTRUCTOR
 
 
