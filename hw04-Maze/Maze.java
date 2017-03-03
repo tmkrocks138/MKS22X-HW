@@ -24,14 +24,18 @@ public class Maze{
 
     public Maze(String filename){
 	try{
-	    File files = new File(filename)
+	    File files = new File(filename);
 	}
 	catch(FileNotFoundException e){
 	    System.exit(0);
 	}
 	Scanner in = new Scanner(files);
+	String stringy;
+	maze = new char[in.nextLine().length()][];
+	
+
 	while (in.hasNextLine()){
-	    String stringy = in.nextLine();
+	    stringy += in.nextLine();
              
 	}
         //COMPLETE CONSTRUCTOR

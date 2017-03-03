@@ -23,7 +23,17 @@ public class Maze{
     */
 
     public Maze(String filename){
-	Scanner in = new Scanner(new File(filename));
+	try{
+	    File files = new File(filename)
+	}
+	catch(FileNotFoundException e){
+	    System.exit(0);
+	}
+	Scanner in = new Scanner(files);
+	while (in.hasNextLine()){
+	    String stringy = in.nextLine();
+             
+	}
         //COMPLETE CONSTRUCTOR
 
 
@@ -100,7 +110,7 @@ public class Maze{
 	}
 	else{
 	    setSpot(row, col, '@');
-	    if(validSpot(row - 1, col) && getSpot(row - 1, col)==' '){
+/*	    if(validSpot(row - 1, col) && getSpot(row - 1, col)==' '){
 		return solve(row - 1, col);
 	    }
 	    else if (validSpot(row, col + 1) && getSpot(row, col + 1) == ' '){
@@ -113,8 +123,7 @@ public class Maze{
 		return solve(row, col - 1);
 	    }
 
-	    /*   IS IT THIS???
-
+*/
 	    if(validSpot(row - 1, col) && getSpot(row - 1, col)==' ' && solve(row - 1, col)){
 	        return true;
 	    }
@@ -127,7 +136,7 @@ public class Maze{
 	    else if (validSpot(row, col - 1) && getSpot(row, col - 1) == ' ' && solve(row, col - 1)){
 		return true;
 	    }
-	     */
+	     
 	    
 	    else{
 		setSpot(row, col, '.');
