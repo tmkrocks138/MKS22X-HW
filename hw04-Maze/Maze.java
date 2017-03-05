@@ -6,6 +6,7 @@ public class Maze{
 
     private char[][]maze;
     private boolean animate;
+    private String[] isolateRow;
 
     
 
@@ -38,8 +39,18 @@ public class Maze{
 	while (in.hasNextLine()){
 	    bigStringy += "\n" + in.nextLine();    
 	}
+// Take out bad values
+	if (bigStringy.indexOf("S")== -1 || bigStringy.indexOf("E") == -1){
+	    throw new IllegalArgumentException("");
+	    System.exit(0);
+	}
+	if (bigStringy.indexOf("S")!= bigStringy.lastIndexOf("S") || bigStringy.indexOf("E") != bigStringy.lastIndexOf("E")){
+	    throw new IllegalArgumentException("");
+	    System.exit(0);
+	}
 //split by line
 	String[] ann = bigStringy.split("\n");   //Ann helped me...
+	isolateRow = ann;
 //initialize maze
 	maze = new char[ann.length][];
 	for (int i = 0; i < ann.length; i++){
@@ -84,8 +95,18 @@ public class Maze{
     */
     public boolean solve(){
             int startr=-1,startc=-1;
-
-            //Initialize starting row and startint col with the location of the S. 
+	    boolean exit = false;
+	    for (int i = 0; (exit || i < maze.length); i++){
+		for (int j = 0; (exit || j < maze[0].length); j++){
+		    if(maze[i][j]=='S'){
+			startr = i;
+			startc = j;
+			exit = true;
+		    }
+		}
+	    }
+            //Initialize starting row and startint col with the location of the S.
+	    while()
 
             maze[startr][startc] = ' ';//erase the S, and start solving!
             return solveH(startr,startc);
