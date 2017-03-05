@@ -7,6 +7,7 @@ public class Maze{
     private char[][]maze;
     private boolean animate;
     private String[] isolateRow;
+    private String mazing;
 
     
 
@@ -31,10 +32,11 @@ public class Maze{
 	    Scanner in = new Scanner(files);
 	    //get a BIG string of doc
 	    String bigStringy = in.nextLine();
-
+	   
 	    while (in.hasNextLine()){
 		bigStringy += "\n" + in.nextLine();    
 	    }
+	    mazing = bigStringy;
 	    // Take out bad values
 	    if (bigStringy.indexOf("S")== -1 || bigStringy.indexOf("E") == -1){
 		throw new IllegalArgumentException("");
@@ -94,8 +96,8 @@ public class Maze{
     public boolean solve(){
 	int startr=-1,startc=-1;
 	boolean exit = false;
-	for (int i = 0; (exit || i < maze.length); i++){
-	    for (int j = 0; (exit || j < maze[0].length); j++){
+	for (int i = 0; (!exit || i < maze.length); i++){
+	    for (int j = 0; (!exit || j < maze[i].length); j++){
 		if(maze[i][j]=='S'){
 		    startr = i;
 		    startc = j;
@@ -165,6 +167,11 @@ public class Maze{
 
     private boolean validSpot(int row, int col){
 	return (maze.length > row && row >= 0) && (maze[0].length > col && col >= 0);
+    }
+    public void getMazing(){
+	System.out.println(maze);
+	System.out.println(isolateRow);
+	System.out.println(mazing);
     }
     
 
