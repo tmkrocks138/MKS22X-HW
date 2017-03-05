@@ -27,34 +27,32 @@ public class Maze{
 	//Check for file
 	try{
 	    File files = new File(filename);
+
+	    Scanner in = new Scanner(files);
+	    //get a BIG string of doc
+	    String bigStringy = in.nextLine();
+
+	    while (in.hasNextLine()){
+		bigStringy += "\n" + in.nextLine();    
+	    }
+	    // Take out bad values
+	    if (bigStringy.indexOf("S")== -1 || bigStringy.indexOf("E") == -1){
+		throw new IllegalArgumentException("");
+	    }
+	    if (bigStringy.indexOf("S")!= bigStringy.lastIndexOf("S") || bigStringy.indexOf("E") != bigStringy.lastIndexOf("E")){
+		throw new IllegalArgumentException("");
+	    }
+	    //split by line
+	    String[] ann = bigStringy.split("\n");   //Ann helped me...
+	    isolateRow = ann;
+	    //initialize maze
+	    maze = new char[ann.length][];
+	    for (int i = 0; i < ann.length; i++){
+		maze[i]=ann[i].toCharArray();
+	    }
 	}
 	catch(FileNotFoundException e){
 	    System.exit(0);
-	}
-
-	Scanner in = new Scanner(files);
-	//get a BIG string of doc
-	String bigStringy = in.nextLine();
-
-	while (in.hasNextLine()){
-	    bigStringy += "\n" + in.nextLine();    
-	}
-	// Take out bad values
-	if (bigStringy.indexOf("S")== -1 || bigStringy.indexOf("E") == -1){
-	    throw new IllegalArgumentException("");
-	    System.exit(0);
-	}
-	if (bigStringy.indexOf("S")!= bigStringy.lastIndexOf("S") || bigStringy.indexOf("E") != bigStringy.lastIndexOf("E")){
-	    throw new IllegalArgumentException("");
-	    System.exit(0);
-	}
-	//split by line
-	String[] ann = bigStringy.split("\n");   //Ann helped me...
-	isolateRow = ann;
-	//initialize maze
-	maze = new char[ann.length][];
-	for (int i = 0; i < ann.length; i++){
-	    maze[i]=ann[i].toCharArray();
 	}
 
 
@@ -127,7 +125,7 @@ public class Maze{
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
     */
-    private boolean solve(int row, int col){
+    private boolean solveH(int row, int col){
         if(animate){
             System.out.println("\033[2J\033[1;1H"+this);
 
@@ -139,24 +137,23 @@ public class Maze{
 	}
 	else{
 	    setSpot(row, col, '@');
-	    if(validSpot(row - 1, col) && getSpot(row - 1, col)==' ' && solve(row - 1, col)){
+	    if(validSpot(row - 1, col) && getSpot(row - 1, col)==' ' && solveH(row - 1, col)){
 	        return true;
 	    }
-	    else if (validSpot(row, col + 1) && getSpot(row, col + 1) == ' ' && solve(row, col + 1)){
+	    else if (validSpot(row, col + 1) && getSpot(row, col + 1) == ' ' && solveH(row, col + 1)){
 		return true;
 	    }
-	    else if (validSpot(row + 1, col) && getSpot(row + 1, col) == ' ' && solve(row + 1, col)){
+	    else if (validSpot(row + 1, col) && getSpot(row + 1, col) == ' ' && solveH(row + 1, col)){
 		return true;
 	    }
-	    else if (validSpot(row, col - 1) && getSpot(row, col - 1) == ' ' && solve(row, col - 1)){
+	    else if (validSpot(row, col - 1) && getSpot(row, col - 1) == ' ' && solveH(row, col - 1)){
 		return true;
 	    }	    
 	    else{
 		setSpot(row, col, '.');
-		return false;
 	    }
-	    return false 
-		}
+       	    return false; 
+	}
     }
 
     public char getSpot(int row, int col){
