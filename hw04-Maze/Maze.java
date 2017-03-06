@@ -16,12 +16,9 @@ public class Maze{
       '#' - locations that cannot be moved onto
       ' ' - locations that can be moved onto
       'E' - the location of the goal (exactly 1 per file)
-
       'S' - the location of the start(exactly 1 per file)
-
       2. The maze has a border of '#' around the edges. So you don't have to check for out of bounds!
       3. When the file is not found OR there is no E or S then: print an error and exit the program.
-
     */
 
     public Maze(String filename){
@@ -111,17 +108,11 @@ public class Maze{
 
     /*
       Recursive Solve function:
-
       A solved maze has a path marked with '@' from S to E.
-
       Returns true when the maze is solved,
       Returns false when the maze has no solution.
-
-
       Postcondition:
-
       The S is replaced with '@' but the 'E' is not.
-
       All visited spots that were not part of the solution are changed to '.'
       All visited spots that are part of the solution are changed to '@'
     */
@@ -137,31 +128,29 @@ public class Maze{
 	   
 	}
 	
-	if (getSpot(row, col)==' '){
-	    setSpot(row, col, '@');
-
-	    if(validSpot(row - 1, col) && getSpot(row - 1, col) == ' ' && solveH(row - 1, col)){
+	else if (maze[row][col]==' '){
+	    maze[row][col] = '@';
+	    if(validSpot(row - 1, col) && solveH(row - 1, col)){
 		System.out.println("up");
 		return true;
 	
 	    }
-	    else if(validSpot(row, col + 1) && getSpot(row, col + 1) == ' ' && solveH(row, col + 1)){
+	    else if(validSpot(row, col + 1) && solveH(row, col + 1)){
 		System.out.println("right");
 		return true;
 
 	    }
-	    else if(validSpot(row, col - 1) && getSpot(row, col - 1) == ' ' && solveH(row, col - 1)){
+	    else if(validSpot(row + 1, col) && solveH(row + 1, col)){
+		System.out.println("down");
+		return true;
+	    }
+	    else if(validSpot(row, col - 1) && solveH(row, col - 1)){
 		System.out.println("left");
 		return true;
 
 	    }
-	    else if(validSpot(row + 1, col) && getSpot(row + 1, col) == ' ' && solveH(row + 1, col)){
-		System.out.println("down");
-		return true;
-
-	    }
 	    else{
-		setSpot(row, col, '.');
+	        maze[row][col]='.';
 		System.out.println("back");
 		return false;
 	    }
