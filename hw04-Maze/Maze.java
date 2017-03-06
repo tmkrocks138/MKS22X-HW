@@ -95,13 +95,11 @@ public class Maze{
     */
     public boolean solve(){
 	int startr=-1,startc=-1;
-	boolean exit = false;
-	for (int i = 0; (!exit && i < maze.length); i++){
-	    for (int j = 0; (!exit && j < maze[i].length); j++){
+	for (int i = 0; i < maze.length; i++){
+	    for (int j = 0; j < maze[0].length; j++){
 		if(maze[i][j]=='S'){
 		    startr = i;
 		    startc = j;
-		    exit = true;
 		}
 	    }
 	}
@@ -128,17 +126,50 @@ public class Maze{
       All visited spots that are part of the solution are changed to '@'
     */
     private boolean solveH(int row, int col){
-        if(animate){
+	if(animate){
             System.out.println("\033[2J\033[1;1H"+this);
 
             wait(100);
         }
 
-	if(getSpot(row, col)=='E'){
+	if(maze[row][col] == 'E'){
 	    return true;
+	   
 	}
-	else{
+	
+	if (getSpot(row, col)==' '){
 	    setSpot(row, col, '@');
+
+	    if(validSpot(row - 1, col) && getSpot(row - 1, col) == ' ' && solveH(row - 1, col)){
+		System.out.println("up");
+		return true;
+	
+	    }
+	    else if(validSpot(row, col + 1) && getSpot(row, col + 1) == ' ' && solveH(row, col + 1)){
+		System.out.println("right");
+		return true;
+
+	    }
+	    else if(validSpot(row, col - 1) && getSpot(row, col - 1) == ' ' && solveH(row, col - 1)){
+		System.out.println("left");
+		return true;
+
+	    }
+	    else if(validSpot(row + 1, col) && getSpot(row + 1, col) == ' ' && solveH(row + 1, col)){
+		System.out.println("down");
+		return true;
+
+	    }
+	    else{
+		setSpot(row, col, '.');
+		System.out.println("back");
+		return false;
+	    }
+     	}
+
+        return false;
+	/*	if (getSpot(row, col)==' '){
+		setSpot(row, col, '@');
 	    if(getSpot(row - 1, col)==' ' && solveH(row - 1, col)){
 	        return true;
 	    }
@@ -156,7 +187,7 @@ public class Maze{
 		return false;
 	    }
 	    //       	    return false; 
-	}
+	}*/
     }
 
     public char getSpot(int row, int col){
@@ -167,7 +198,7 @@ public class Maze{
     }
 
     private boolean validSpot(int row, int col){
-	return (maze.length > row && row >= 0) && (maze[0].length > col && col >= 0);
+	return (maze.length - 1 > row && row >= 1) && (maze[0].length - 1 > col && col >= 1);
     }
     public void getMazing(){
 	System.out.println(maze);
