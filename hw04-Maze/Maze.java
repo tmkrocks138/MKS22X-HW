@@ -131,27 +131,27 @@ public class Maze{
 	else if (maze[row][col]==' '){
 	    maze[row][col] = '@';
 	    if(validSpot(row - 1, col) && solveH(row - 1, col)){
-		System.out.println("up");
+		//System.out.println("up");
 		return true;
 	
 	    }
 	    else if(validSpot(row, col + 1) && solveH(row, col + 1)){
-		System.out.println("right");
+		//System.out.println("right");
 		return true;
 
 	    }
 	    else if(validSpot(row + 1, col) && solveH(row + 1, col)){
-		System.out.println("down");
+		//System.out.println("down");
 		return true;
 	    }
 	    else if(validSpot(row, col - 1) && solveH(row, col - 1)){
-		System.out.println("left");
+		//System.out.println("left");
 		return true;
 
 	    }
 	    else{
 	        maze[row][col]='.';
-		System.out.println("back");
+		//System.out.println("back");
 		return false;
 	    }
      	}
