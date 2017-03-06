@@ -96,8 +96,8 @@ public class Maze{
     public boolean solve(){
 	int startr=-1,startc=-1;
 	boolean exit = false;
-	for (int i = 0; (!exit || i < maze.length); i++){
-	    for (int j = 0; (!exit || j < maze[i].length); j++){
+	for (int i = 0; (!exit && i < maze.length); i++){
+	    for (int j = 0; (!exit && j < maze[i].length); j++){
 		if(maze[i][j]=='S'){
 		    startr = i;
 		    startc = j;
@@ -131,7 +131,7 @@ public class Maze{
         if(animate){
             System.out.println("\033[2J\033[1;1H"+this);
 
-            wait(20);
+            wait(100);
         }
 
 	if(getSpot(row, col)=='E'){
@@ -139,22 +139,23 @@ public class Maze{
 	}
 	else{
 	    setSpot(row, col, '@');
-	    if(validSpot(row - 1, col) && getSpot(row - 1, col)==' ' && solveH(row - 1, col)){
+	    if(getSpot(row - 1, col)==' ' && solveH(row - 1, col)){
 	        return true;
 	    }
-	    else if (validSpot(row, col + 1) && getSpot(row, col + 1) == ' ' && solveH(row, col + 1)){
+	    else if(getSpot(row, col + 1) == ' ' && solveH(row, col + 1)){
 		return true;
 	    }
-	    else if (validSpot(row + 1, col) && getSpot(row + 1, col) == ' ' && solveH(row + 1, col)){
+	    else if(getSpot(row + 1, col) == ' ' && solveH(row + 1, col)){
 		return true;
 	    }
-	    else if (validSpot(row, col - 1) && getSpot(row, col - 1) == ' ' && solveH(row, col - 1)){
+	    else if(getSpot(row, col - 1) == ' ' && solveH(row, col - 1)){
 		return true;
 	    }	    
 	    else{
 		setSpot(row, col, '.');
+		return false;
 	    }
-       	    return false; 
+	    //       	    return false; 
 	}
     }
 
@@ -173,7 +174,18 @@ public class Maze{
 	System.out.println(isolateRow);
 	System.out.println(mazing);
     }
-    
+    public String toString(){
+	String str = "";
+	for (int i = 0; i < maze.length; i++){
+	    for (int j = 0; j < maze[0].length; j++){
+		str += maze[i][j];
+	    }
+	    if (i < maze.length - 1){
+		str += "\n";
+	    }
+	}
+	return str;
+    }
 
 
 }
