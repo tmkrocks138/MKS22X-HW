@@ -3,6 +3,7 @@ import java.io.*;
 
 public class USACO {
     private static int R = 0, C = 0, E = 0, N = 0;
+    private static String lakeS="";
     private static int[][] lake;
   
     public static int bronze(String filename) {
@@ -24,25 +25,25 @@ public class USACO {
 	Scanner scanner;
 	try{
 	    scanner = new Scanner(new File(filename));
+	    String line1= scanner.nextLine();
+	    String[] temp = line1.split(" ");
+	    R = Integer.parseInt(temp[0]);
+	    C = Integer.parseInt(temp[1]);
+	    E = Integer.parseInt(temp[2]);
+	    N = Integer.parseInt(temp[3]);
+	    lake = new int[R][C];
+	    int fillerR = R, fillerC = C;
+	    while(scanner.hasNextLine() && fillerR > 0){
+		String row = scanner.nextLine();
+		temp = row.split(" ");
+		for(int i = 0; i < temp.length; i++){
+		    lake[R-fillerR][i]=Integer.parseInt(temp[i]);
+		}
+		fillerR--;
+	    }
 	}
 	catch(FileNotFoundException e) {
 	    System.out.println("FILE NOT FOUND!!!");
-	}
-	String line1= scanner.nextLine();
-	String[] temp = line1.split(" ");
-	R = Integer.parseInt(temp[0]);
-	C = Integer.parseInt(temp[1]);
-	E = Integer.parseInt(temp[2]);
-	N = Integer.parseInt(temp[3]);
-	lake = new int[R][C];
-	int fillerR = R, fillerC = C;
-	while(scanner.hasNextLine() && fillerR > 0){
-	    String row = scanner.nextLine();
-	    temp = row.split(" ");
-	    for(int i = 0; i < temp.length; i++){
-		lake[R-fillerR][i]=Integer.parseInt(temp[i]);
-	    }
-	    fillerR--;
 	}
 
     }
