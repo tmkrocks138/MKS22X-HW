@@ -31,7 +31,12 @@ public class KnightBoard{
     } //blank if you never called solve or when there is no solution
 
     public void solve(){
-	solveH(0,0,1);
+	for (int r = 0; r <= rowL / 2; r++){
+	    for (int c = r; c <= columnL / 2; c++){
+		solveH(0,0,1);
+	    }
+	}
+
     } 
     /*
       if done()->true
