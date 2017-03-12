@@ -19,7 +19,7 @@ public class USACO {
 	//D_s = push down D_s inches
 	//N = amount of stomp digging
     
-	readFile(filename);
+	readFileB(filename);
 	//System.out.println(lake);
 	int rowStomp = R + 2;
 	int stompCount = N;
@@ -35,7 +35,7 @@ public class USACO {
 	
     }
   
-    private static void readFile(String filename){
+    private static void readFileB(String filename){
 	try{
 	    scanner = new Scanner(new File(filename));
 	}
@@ -136,12 +136,15 @@ public class USACO {
 
 
 
+
+    private static int N = 0, M = 0, T= 0;
+    private static int 
+
     
     public int silver(String filename) {
 	//set a ton of cows in different directions
 	//set ticks and count down
 	int ways = 0;
-
 
 
 	return ways;
