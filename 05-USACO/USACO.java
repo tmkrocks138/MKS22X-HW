@@ -212,7 +212,7 @@ public class USACO {
     }
 
     private static int moving(int[][] f, String start2end, int moves){
-	System.out.println(toPrint(f));
+	//System.out.println(toPrint(f));
 	int times = 0;
 	
 	String[] temp = start2end.split(" ");
@@ -252,7 +252,7 @@ public class USACO {
 		}
 	    }
 	    f = newNums;
-	    System.out.println(toPrint(f));
+	    //System.out.println(toPrint(f));
 	}
 
 	times = f[r2][c2];
