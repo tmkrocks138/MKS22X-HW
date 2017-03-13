@@ -5,7 +5,7 @@ public class USACO {
     private static int R = 0, C = 0, E = 0, N = 0;
     private static String lakeS="";
     private static int[][] lake;
-    private static Scanner scanner=null;
+    private static Scanner scanner = null;
 
   
     public static int bronze(String filename) {
@@ -19,7 +19,7 @@ public class USACO {
 	//D_s = push down D_s inches
 	//N = amount of stomp digging
     
-	readFile(filename);
+	readFileB(filename);
 	//System.out.println(lake);
 	int rowStomp = R + 2;
 	int stompCount = N;
@@ -35,7 +35,7 @@ public class USACO {
 	
     }
   
-    private static void readFile(String filename){
+    private static void readFileB(String filename){
 	try{
 	    scanner = new Scanner(new File(filename));
 	}
@@ -49,6 +49,7 @@ public class USACO {
 	C = Integer.parseInt(temp[1]);
 	E = Integer.parseInt(temp[2]);
 	N = Integer.parseInt(temp[3]);
+
 	lake = new int[R][C];
 	int fillerR = R, fillerC = C;
 	while(scanner.hasNextLine() && fillerR > 0){
@@ -63,13 +64,13 @@ public class USACO {
 
     private static void stompDig(int[][] l, String liney){
 	String[] temp = liney.split(" ");
-	int r = Integer.parseInt(temp[0]);
-	int c = Integer.parseInt(temp[1]);
+	int r = Integer.parseInt(temp[0]) - 1;
+	int c = Integer.parseInt(temp[1]) - 1;
 	int down = Integer.parseInt(temp[2]);
 
 	int[] nums = new int[9];
-	for (int counterR = r - 1, loop = 0; loop < 3 ; loop++, counterR++){
-	    for (int counterC = r - 1, loopy = 0; loopy < 3 ; loopy++, counterC++){
+	for (int counterR = r, loop = 0; loop < 3 ; loop++, counterR++){
+	    for (int counterC = c, loopy = 0; loopy < 3 ; loopy++, counterC++){
 		nums[(3*loop)+loopy]=l[counterR][counterC];
 	    }
 	}
@@ -90,8 +91,8 @@ public class USACO {
 	}
 	
 
-	for (int counterR = r - 1, loop = 0; loop < 3 ; loop++, counterR++){
-	    for (int counterC = r - 1, loopy = 0; loopy < 3 ; loopy++, counterC++){
+	for (int counterR = r, loop = 0; loop < 3 ; loop++, counterR++){
+	    for (int counterC = c, loopy = 0; loopy < 3 ; loopy++, counterC++){
 		l[counterR][counterC] =	nums[(3*loop)+loopy];
 	    }
 	}
@@ -136,16 +137,49 @@ public class USACO {
 
 
 
+
+    private static int M = 0, T= 0;
+    private static int[][] feild;
+    private static Scanner in=null;
+
     
     public int silver(String filename) {
 	//set a ton of cows in different directions
 	//set ticks and count down
 	int ways = 0;
-
+	readFileS(filename);
 
 
 	return ways;
 	
+    }
+
+        private static void readFileS(String filename){
+	try{
+	    in = new Scanner(new File(filename));
+	}
+	catch(FileNotFoundException e) {
+	    System.out.println("FILE NOT FOUND!!!");
+	}
+
+	
+	String line1= scanner.nextLine();
+	String[] temp = line1.split(" ");
+	N = Integer.parseInt(temp[0]);
+	M = Integer.parseInt(temp[1]);
+	T = Integer.parseInt(temp[2]);
+
+	feild = new int[R][C];
+	int fillerR = N, fillerC = M;
+	
+	while(in.hasNextLine() && fillerR > 0){
+	    String row = in.nextLine();
+	    temp = row.split(" ");
+	    for(int i = 0; i < temp.length; i++){
+		lake[N-fillerR][i]=Integer.parseInt(temp[i]);
+	    }
+	    fillerR--;
+	}
     }
 
 }
