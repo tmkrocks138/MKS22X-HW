@@ -118,6 +118,7 @@ public class USACO {
     }
     
     public String toString() {
+       
 	String result = "\n";
 	for (int i = 0; i < lake.length; i++) {
 	    for (int j = 0; j < lake[i].length; j++) {
@@ -133,28 +134,46 @@ public class USACO {
     }
 
 
-
+    public static String toPrint(int[][] f) {
+       
+	String result = "\n";
+	for (int i = 0; i < f.length; i++) {
+	    for (int j = 0; j < f[i].length; j++) {
+		if(f[i][j] < 100) {
+		    result += f[i][j] + "  ";
+		}
+		else {
+		    result += f[i][j] + " ";
+		}
+	    }
+	    result += "\n";
+	}
+	return result;
+    }
 
 
 
 
     private static int M = 0, T= 0;
-    private static int[][] feild;
+    private static int[][] field;
     private static Scanner in=null;
+
 
     
     public int silver(String filename) {
 	//set a ton of cows in different directions
 	//set ticks and count down
 	int ways = 0;
+	
 	readFileS(filename);
 
-
+	ways = moving(field, in.nextLine(), T);
+	
 	return ways;
 	
     }
 
-        private static void readFileS(String filename){
+    private static void readFileS(String filename){
 	try{
 	    in = new Scanner(new File(filename));
 	}
@@ -163,23 +182,81 @@ public class USACO {
 	}
 
 	
-	String line1= scanner.nextLine();
+	String line1= in.nextLine();
 	String[] temp = line1.split(" ");
 	N = Integer.parseInt(temp[0]);
 	M = Integer.parseInt(temp[1]);
 	T = Integer.parseInt(temp[2]);
 
-	feild = new int[R][C];
+	field = new int[N][M];
 	int fillerR = N, fillerC = M;
 	
 	while(in.hasNextLine() && fillerR > 0){
 	    String row = in.nextLine();
-	    temp = row.split(" ");
-	    for(int i = 0; i < temp.length; i++){
-		lake[N-fillerR][i]=Integer.parseInt(temp[i]);
+	    char[] T = row.toCharArray();
+	    // System.out.println(row);
+	    
+	    
+	    for(int i = 0; i < T.length; i++){
+		//System.out.println(T[i]);
+	       	if(T[i] == '*'){
+		    field[N-fillerR][i]=-1;
+		}
+		else if(T[i] == '.'){
+		    field[N-fillerR][i]=0;
+		}
+
 	    }
 	    fillerR--;
 	}
     }
 
+    private static int moving(int[][] f, String start2end, int moves){
+	System.out.println(toPrint(f));
+	int times = 0;
+	
+	String[] temp = start2end.split(" ");
+	int r1 = Integer.parseInt(temp[0]) - 1;
+	int c1 = Integer.parseInt(temp[1]) - 1;
+	int r2 = Integer.parseInt(temp[2]) - 1;
+	int c2 = Integer.parseInt(temp[3]) - 1;
+
+
+	for(int count = 0; count <= moves; count++){
+	    int[][] newNums = new int[f.length][f[0].length];
+	    for (int i = 0; i < f.length; i++){
+		for (int j = 0; j < f[i].length; j++){
+		    if (count == 0){
+			newNums[r1][c1] = 1;
+		    }
+		    if(f[i][j]==-1){
+			newNums[i][j] = -1;
+		    }
+		    if(i >= 1 && f[i-1][j] > 0){
+			newNums[i][j] += f[i-1][j];
+		    }
+		    if(j >= 1 && f[i][j-1] > 0){
+			newNums[i][j] += f[i][j-1];
+		    }
+		    if(i < f.length - 1 && f[i+1][j] > 0){
+			newNums[i][j] += f[i+1][j];
+		    }
+		    if(j < f[i].length - 1 && f[i][j+1] > 0){
+		       
+			newNums[i][j] += f[i][j+1];
+		    }
+		    if(f[i][j]==-1){
+			newNums[i][j] = -1;
+		    }
+
+		}
+	    }
+	    f = newNums;
+	    System.out.println(toPrint(f));
+	}
+
+	times = f[r2][c2];
+
+	return times;
+    }
 }
