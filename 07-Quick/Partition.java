@@ -3,10 +3,6 @@ import java.util.Random;
 
 public class Partition{
 
-    public static int part(int[] ary, int start, int end){
-	
-    }
-
    public static int part(int[] ary, int start, int end){
 
 	int ans = -1;

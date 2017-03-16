@@ -4,6 +4,10 @@ import java.util.Random;
 public class Partition{
 
     public static int part(int[] ary, int start, int end){
+	
+    }
+
+   public static int part(int[] ary, int start, int end){
 
 	int ans = -1;
 	
@@ -32,8 +36,6 @@ public class Partition{
 	    temp[low] = val;
 	}
 
-	ary = temp;
-
 	return ans;
     }
 
@@ -52,5 +54,5 @@ public class Partition{
 	System.out.println(part(ary, 1, 5));
 	System.out.println(toString(ary));
     }
-    
+
 }
