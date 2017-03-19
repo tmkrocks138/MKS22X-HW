@@ -54,6 +54,8 @@ public class Quick{
 	return b;
     }
 
+    public static void sort(){}
+
 
     public static void main(String[] args){
 	int[]ary = { 2, 10, 15, 23, 0,  5};
