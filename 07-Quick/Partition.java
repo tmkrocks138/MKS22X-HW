@@ -74,7 +74,7 @@ public class Partition{
     }
 
     public static void main(String[] args){
-	int[]ary = { 2, 10, 15, 23, 0,  5};
+	int[]ary = { 2, 10, 15, 23, 0,  5, 5, 5, 4, 24563, 33333, 777, 4, 9, 123, -1};
 	System.out.println(part(ary, 0, 5));
 	System.out.println(toString(ary));
 	System.out.println(part(ary, 1, 5));

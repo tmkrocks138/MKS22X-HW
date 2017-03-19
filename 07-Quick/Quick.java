@@ -2,6 +2,8 @@ import java.util.Random;
 
 public class Quick{
 
+    int[] data;
+
     public static int select(int[] data, int k){
 	boolean splitting = true;
 	int start = 0, end = data.length - 1;
@@ -54,18 +56,41 @@ public class Quick{
 	return b;
     }
 
-    public static void sort(){}
+    public void quickSort(){
+        sortH(data, 0, data.length - 1);
+    }
+    
+    public static int[] sortH(int[] ary, int start, int end){
+	if(start < end){
+	    int p = part(ary, start, end);
+	    if(p != 0){
+		sortH(ary, start, p-1);	
+	    }
+	    if(p != end){
+		sortH(ary, p+1, end);
+	    }
+	}
+	return ary;
+    }
 
+    public static String toString(int[] ary){
+	String ans = "";
+	for (int i = 0; i < ary.length; i++){
+	    ans += ary[i] + "  ";
+	}
+	return ans;
+    }
 
     public static void main(String[] args){
-	int[]ary = { 2, 10, 15, 23, 0,  5};
+	int[]ary = { 2, 10, 15, 23, 0,  5, 5, 5, 4, 24563, 33333, 777, 4, 9, 123, -1};
 	//System.out.println(part( ary, 0, ary.length - 1 ));
-	System.out.println(select( ary , 0 ));
+      	/*System.out.println(select( ary , 0 ));
 	System.out.println(select( ary , 1 ));
 	System.out.println(select( ary , 2 ));
 	System.out.println(select( ary , 3 ));
 	System.out.println(select( ary , 4 ));
-	System.out.println(select( ary , 5 ));
+	System.out.println(select( ary , 5 ));*/
+	System.out.println(toString(sortH(ary, 0, ary.length - 1)));
     } 
 }
 
