@@ -27,7 +27,6 @@ public class Quick{
 
     public static int part(int[] ary, int start, int end){
 
-	int ans = -1;
 	
 	Random r = new Random();
 	int specialI = r.nextInt(end+1 - start)+start;
@@ -40,6 +39,9 @@ public class Quick{
 	int low = start, high = end;
 
 	for(int i = start; i < end; i++){
+
+            System.out.println(ary[i]);
+
 	    if((i!=specialI) &&  (i!=end)){
 		if(ary[i] < val){
 		    temp[low]=ary[i];

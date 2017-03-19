@@ -25,56 +25,45 @@ public class Quick{
     }
 
 
-    public static int part(int[] ary, int start, int end){
-
-	
+   public static int part(int[] ary, int start, int end){
 	Random r = new Random();
 	int specialI = r.nextInt(end+1 - start)+start;
 	int val = ary[specialI];
-	
-	System.out.println(val);
 
-	int[] temp= new int[ary.length];
+	//move special to front
+	ary[specialI]= ary[start];
+	ary[start]=val;
 
-	int low = start, high = end;
+	int a=start+1, b=end;
 
-	for(int i = start; i < end; i++){
-
-            System.out.println(ary[i]);
-
-	    if((i!=specialI) &&  (i!=end)){
-		if(ary[i] < val){
-		    temp[low]=ary[i];
-		    low++;
-		}
-		else{
-		    temp[high]=ary[i];
-		    high--; 
-		}
+	while(b >= a){
+	    if (ary[a]<val){
+		a++;
 	    }
-	    if(i==end){
-		specialI = low;
-		temp[low]=val;
+	    else{
+		int temp = ary[b];
+		ary[b]=ary[a];
+		ary[a]=temp;
+		b--;
 	    }
 	}
-	
 
-	for(int i = 0; i < ary.length; i++){
-	    ary[i]=temp[i];
-	}
-	return specialI;
+	ary[start]=ary[b];
+	ary[b]=val;
+
+	return b;
     }
 
 
     public static void main(String[] args){
 	int[]ary = { 2, 10, 15, 23, 0,  5};
-	System.out.println(part( ary, 0, ary.length - 1 ));
-//	System.out.println(select( ary , 0 ));
-//	System.out.println(select( ary , 1 ));
-//	System.out.println(select( ary , 2 ));
-//	System.out.println(select( ary , 3 ));
-//	System.out.println(select( ary , 4 ));
-//	System.out.println(select( ary , 5 ));
+	//System.out.println(part( ary, 0, ary.length - 1 ));
+	System.out.println(select( ary , 0 ));
+	System.out.println(select( ary , 1 ));
+	System.out.println(select( ary , 2 ));
+	System.out.println(select( ary , 3 ));
+	System.out.println(select( ary , 4 ));
+	System.out.println(select( ary , 5 ));
     } 
 }
 

@@ -3,7 +3,37 @@ import java.util.Random;
 
 public class Partition{
 
-   public static int part(int[] ary, int start, int end){
+    public static int part(int[] ary, int start, int end){
+	Random r = new Random();
+	int specialI = r.nextInt(end+1 - start)+start;
+	int val = ary[specialI];
+
+	//move special to front
+	ary[specialI]= ary[start];
+	ary[start]=val;
+
+	int a=start+1, b=end;
+
+	while(b >= a){
+	    if (ary[a]<val){
+		a++;
+	    }
+	    else{
+		int temp = ary[b];
+		ary[b]=ary[a];
+		ary[a]=temp;
+		b--;
+	    }
+	}
+
+	ary[start]=ary[b];
+	ary[b]=val;
+
+	return b;
+    }
+
+    
+    public static int part2(int[] ary, int start, int end){
 
 	int ans = -1;
 	
@@ -38,7 +68,7 @@ public class Partition{
     public static String toString(int[] ary){
 	String ans = "";
 	for (int i = 0; i < ary.length; i++){
-		ans += ary[i] + "  ";
+	    ans += ary[i] + "  ";
 	}
 	return ans;
     }
