@@ -18,7 +18,7 @@ public class Quiz2Redux{
 	}
 	else{
 	    if(index==0){
-	       	words.add("");
+		words.add("");
 	    }
 	    
 	    for(int count = 0; count < s.length(); count++){
@@ -32,16 +32,15 @@ public class Quiz2Redux{
 
 
 
-    /*    public static void main(String[] args) {
+    public static void main(String[] args) {
 	Quiz2Redux a = new Quiz2Redux();
 	ArrayList<String> words = new ArrayList<String>();
-	String s = "abc";
+	String s = "abcdefghi";
 	help(words, s, 0);
 	String ans = "\"\", ";
 	for(int i = 0; i < words.size(); i++) {
 	    ans += words.get(i) + ", ";
 	}
 	System.out.println(ans);
-    }*/
+    }
 }
-
