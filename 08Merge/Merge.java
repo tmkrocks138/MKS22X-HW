@@ -51,7 +51,24 @@ public class Merge{
 	    bigI++;
 	}
     }
-    
+
+    public static String toString(int[] ary){
+	String ans = "";
+	for (int i = 0; i < ary.length; i++){
+	    ans += ary[i] + "  ";
+	}
+	return ans;
+    }
+
+    /*    public static void main(String[] args){
+	int[] array = new int[1000];
+	for (int i = 0; i < array.length; i++){
+	    array[i];
+	}
+	mergeSort(array);
+	System.out.println(toString(array));
+    }
+    */
     
 
 

@@ -29,7 +29,7 @@ public class Quick{
     }
 
 
-   public static int[] part(int[] ary, int start, int end){
+    public static int[] part(int[] ary, int start, int end){
 	Random r = new Random();
 	int specialI = r.nextInt(end+1 - start)+start;
 	int val = ary[specialI];
