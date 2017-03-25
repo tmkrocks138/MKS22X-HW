@@ -2,32 +2,34 @@ import java.util.Random;
 
 public class Quick{
 
-    int[] data;
-
+    public int[] data;
+    
     public static int select(int[] data, int k){
 	boolean splitting = true;
 	int start = 0, end = data.length - 1;
 	while (splitting){
-	    int ind = part(data, start, end);
-	    if(k == ind){
+	    int[] sol = part(data, start, end);
+	    int low = sol[0];
+	    int high = sol [1];
+	    if(k >= low && k <= high){
 		splitting = false;
-		return data[ind];
+		return data[low];
 	    }
 	    else if(start == end){
 		splitting = false;
 	    }
-	    else if (k < ind){
-		end = ind;
+	    else if (k < low){
+		end = low-1;
 	    }
-	    else if (k > ind){
-		start = ind;
+	    else if (k > high){
+		start = high+1;
 	    }
 	}
 	return -1;
     }
 
 
-   public static int part(int[] ary, int start, int end){
+   public static int[] part(int[] ary, int start, int end){
 	Random r = new Random();
 	int specialI = r.nextInt(end+1 - start)+start;
 	int val = ary[specialI];
@@ -36,24 +38,34 @@ public class Quick{
 	ary[specialI]= ary[start];
 	ary[start]=val;
 
-	int a=start+1, b=end;
+	int lt =start+1, i = lt, gt=end ;
 
-	while(b >= a){
-	    if (ary[a]<val){
-		a++;
+	while(i <= gt){
+	    if (ary[i]<val){
+		int temp = ary[i];
+		ary[i]=ary[lt];
+		ary[lt]=temp;
+		i++;
+		lt++;
 	    }
-	    else{
-		int temp = ary[b];
-		ary[b]=ary[a];
-		ary[a]=temp;
-		b--;
+	    else if(ary[i]==val){
+		i++;
+	    }
+	    else if(ary[i]>val){
+		int temp = ary[gt];
+		ary[gt]=ary[i];
+		ary[i]=temp;
+		gt--;
 	    }
 	}
 
-	ary[start]=ary[b];
-	ary[b]=val;
+	ary[start]=ary[gt];
+	ary[gt]=val;
 
-	return b;
+	int[] ans = new int[2];
+	ans[0]= lt;
+	ans[1]=gt;
+	return ans;
     }
 
     public void quickSort(){
@@ -62,12 +74,12 @@ public class Quick{
     
     public static int[] sortH(int[] ary, int start, int end){
 	if(start < end){
-	    int p = part(ary, start, end);
-	    if(p != 0){
-		sortH(ary, start, p-1);	
+	    int[] p = part(ary, start, end);
+	    if(p[0] != 0){
+		sortH(ary, start, p[0]-1);	
 	    }
-	    if(p != end){
-		sortH(ary, p+1, end);
+	    if(p[1] != end){
+		sortH(ary, p[1]+1, end);
 	    }
 	}
 	return ary;
