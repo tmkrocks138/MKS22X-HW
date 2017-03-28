@@ -11,7 +11,12 @@ public class MyLinkedList{
 
     }
 
-    public String toString(){}
+    public String toString(){
+	String str = "";
+	/*start at start, tack on every value each node. when next == null, stop*/
+	return str;
+
+    }
 
 
 
