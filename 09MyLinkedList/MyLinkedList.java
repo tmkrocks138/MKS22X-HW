@@ -9,7 +9,8 @@ public class MyLinkedList{
 
 
 	//adds to front
-	LNode temp = new LNode(value);
+	LNode temp = new LNode();
+	temp.setVal(value);
 	if (size == 0){
 	    start = temp;
 	    end = temp;
@@ -29,7 +30,7 @@ public class MyLinkedList{
 	/*start at start, tack on every value each node. when next == null, stop*/
 	LNode now = start;
 	while(now.getNext() != null){
-	    str += now.getVal + ", ";
+	    str += now.getVal()+ ", ";
 	    now = now.getNext();
 	}
 	str += end.getVal();
@@ -40,17 +41,22 @@ public class MyLinkedList{
     }
 
     public static void main(String[] args){
-	MyLinkList l = new MyLinkList();
+	MyLinkedList l = new MyLinkedList();
 	l.add(4);
 	l.add(7);
 	System.out.println(l);
     }
 
 
-    private class LNode{
+    public class LNode{
 	public int value;
 	public LNode next, previous;
+	
 	public void LNode(int n){
+	    value = n;
+	}
+
+	public void setVal(int n){
 	    value = n;
 	}
 	public void setNext(LNode i){
