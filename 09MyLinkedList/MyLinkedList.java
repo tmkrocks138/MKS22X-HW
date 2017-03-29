@@ -2,12 +2,22 @@ public class MyLinkedList{
     public LNode start, end;
     public int size;
 
+    public void MyLinkedList(){
+	size = 0;
+    }
     public boolean add(int value){
+
 
 	//adds to front
 	LNode temp = new LNode(value);
-	temp.setNext() = start;
-	start.setPrevious() = temp;
+	if (size == 0){
+	    start = temp;
+	    end = temp;
+	    size++;
+	}
+	
+	temp.setNext(start);
+	start.setPrevious(temp);
 	start = temp;
 	size++; 
 	
@@ -17,10 +27,10 @@ public class MyLinkedList{
     public String toString(){
 	String str = "[";
 	/*start at start, tack on every value each node. when next == null, stop*/
-	now = start;
+	LNode now = start;
 	while(now.getNext() != null){
 	    str += now.getVal + ", ";
-	    now++;
+	    now = now.getNext();
 	}
 	str += end.getVal();
 	str = "]";
@@ -29,8 +39,12 @@ public class MyLinkedList{
 
     }
 
-
-
+    public static void main(String[] args){
+	MyLinkList l = new MyLinkList();
+	l.add(4);
+	l.add(7);
+	System.out.println(l);
+    }
 
 
     private class LNode{
