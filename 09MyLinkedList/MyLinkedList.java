@@ -15,26 +15,30 @@ public class MyLinkedList{
 	    start = temp;
 	    end = temp;
 	    size++;
+	    return true;
 	}
-	
 	temp.setNext(start);
 	start.setPrevious(temp);
 	start = temp;
 	size++; 
-	
+	System.out.println(size);
 	return true;
     }
 
     public String toString(){
+	int temp = size;
 	String str = "[";
 	/*start at start, tack on every value each node. when next == null, stop*/
 	LNode now = start;
-	while(now.getNext() != null){
+	while(temp > 1){
+	    System.out.println(now);
 	    str += now.getVal()+ ", ";
+	    System.out.println(str);
 	    now = now.getNext();
+	    temp--;
 	}
 	str += end.getVal();
-	str = "]";
+	str += "]";
 
 	return str;
 
