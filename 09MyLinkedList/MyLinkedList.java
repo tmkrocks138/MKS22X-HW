@@ -17,11 +17,11 @@ public class MyLinkedList{
 	    size++;
 	    return true;
 	}
-	temp.setNext(start);
-	start.setPrevious(temp);
-	start = temp;
+	temp.setPrevious(end);
+	end.setNext(temp);
+	end = temp;
 	size++; 
-	System.out.println(size);
+	//System.out.println(size);
 	return true;
     }
 
@@ -31,9 +31,9 @@ public class MyLinkedList{
 	/*start at start, tack on every value each node. when next == null, stop*/
 	LNode now = start;
 	while(temp > 1){
-	    System.out.println(now);
+	    //System.out.println(now);
 	    str += now.getVal()+ ", ";
-	    System.out.println(str);
+	    //System.out.println(str);
 	    now = now.getNext();
 	    temp--;
 	}
