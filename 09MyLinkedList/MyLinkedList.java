@@ -5,7 +5,7 @@ public class MyLinkedList{
     public void MyLinkedList(){
 	size = 0;
     }
-    public boolean add(int value){
+    /*public boolean add(int value){
 
 
 	//adds to front
@@ -23,6 +23,74 @@ public class MyLinkedList{
 	size++; 
 	//System.out.println(size);
 	return true;
+    }*/
+
+    public boolean add(int index, int value){
+	LNode plus = new LNode();
+	set(plus, value);
+	if (size != 0){
+	    if(index == 0){
+		start.setPrevious(plus);
+		plus.setNext(start);
+
+		start = plus;
+		size++;
+
+		return true;
+	    }
+	
+	    if(index < size){
+		LNode nxt = get(index);
+	    
+		plus.setPrevious(nxt.getPrevious());
+		nxt.getPrevious().setNext(plus);
+		plus.setNext(nxt);
+		nxt.setPrevious(plus);
+
+		size++;
+	    
+		return true;
+	    }
+	    if(size == index){
+		end.setNext(plus);
+		plus.setPrevious(end);
+
+		end = plus;
+		size++;
+		return true;
+	    }
+	}
+	else if(size==0){
+	    start = plus;
+	    end = plus;
+	    size = 1;
+	    return true;
+	}
+	return false;
+    }
+
+    public int size(){
+	return size;
+    }
+
+    public LNode get(int index){
+	if (size > index){
+	    int i = index;
+	    LNode place = start;
+	    while(i!=0){
+		place = place.next;
+		i--;
+	    }
+	    return place;
+	}
+	else{
+	    throw new IndexOutOfBoundsException("Bad Index");
+	}
+
+    }
+
+    public void set(LNode n, int val){
+	n.value = val;
     }
 
     public String toString(){
@@ -72,7 +140,12 @@ public class MyLinkedList{
 
 	public LNode getNext(){
 	    return next;
+	}
+
+	public LNode getPrevious(){
+	    return previous;
 	} 
+	
 	public int getVal(){
 	    return value;
 	}
