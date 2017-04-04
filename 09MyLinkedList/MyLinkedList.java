@@ -28,6 +28,7 @@ public class MyLinkedList{
     public boolean add(int index, int value){
 	LNode plus = new LNode();
 	set(plus, value);
+	System.out.println(plus.value);
 	if (size != 0){
 	    if(index == 0){
 		start.setPrevious(plus);
@@ -64,6 +65,39 @@ public class MyLinkedList{
 	    start = plus;
 	    end = plus;
 	    size = 1;
+	    return true;
+	}
+	return false;
+    }
+
+    public boolean remove(int index){
+	if(index <= size && size != 1){
+	    LNode minus = get(index);
+	    if (index == 0){
+		minus.getNext().setPrevious(null);
+		start = minus.getNext();
+		size--;
+	    }
+	    else if (index + 1 == size){
+		minus.getPrevious().setNext(null);
+		end = minus.getPrevious();
+		size--;
+	    }
+	    else{
+		LNode a	= minus.getNext();
+		LNode c = minus.getPrevious();
+
+		a.setNext(c);
+		c.setPrevious(a);
+
+		size--;
+	    }
+	    return true;
+	}
+	if(index == 0 && size == 1){
+	    start = null;
+	    end = null;
+	    size = 0;
 	    return true;
 	}
 	return false;
@@ -114,8 +148,11 @@ public class MyLinkedList{
 
     public static void main(String[] args){
 	MyLinkedList l = new MyLinkedList();
-	l.add(4);
-	l.add(7);
+	l.add(0,4);
+	l.add(0,2);
+	l.add(1,9);
+	System.out.println(l);
+	l.remove(2);
 	System.out.println(l);
     }
 
