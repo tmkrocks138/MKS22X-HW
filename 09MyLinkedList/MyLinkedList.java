@@ -1,14 +1,16 @@
+
 public class MyLinkedList{
     public LNode start, end;
-    public int size;
+    private int size;
 
     public void MyLinkedList(){
 	size = 0;
     }
-    /*public boolean add(int value){
 
-
-	//adds to front
+    public int size(){
+	return size;
+    }
+    public boolean add(int value){
 	LNode temp = new LNode();
 	temp.setVal(value);
 	if (size == 0){
@@ -23,12 +25,12 @@ public class MyLinkedList{
 	size++; 
 	//System.out.println(size);
 	return true;
-    }*/
+    }
 
-    public boolean add(int index, int value){
+    public void add(int index, int value){
 	LNode plus = new LNode();
 	set(plus, value);
-	System.out.println(plus.value);
+	//System.out.println(plus.value);
 	if (size != 0){
 	    if(index == 0){
 		start.setPrevious(plus);
@@ -36,43 +38,40 @@ public class MyLinkedList{
 
 		start = plus;
 		size++;
-
-		return true;
+		
 	    }
 	
-	    if(index < size){
-		LNode nxt = get(index);
-	    
+	    else if(index < size){
+		LNode nxt = getNthNode(index);
+
 		plus.setPrevious(nxt.getPrevious());
 		nxt.getPrevious().setNext(plus);
 		plus.setNext(nxt);
 		nxt.setPrevious(plus);
 
 		size++;
-	    
-		return true;
+
 	    }
-	    if(size == index){
+	    else if(size == index){
 		end.setNext(plus);
 		plus.setPrevious(end);
-
 		end = plus;
 		size++;
-		return true;
 	    }
 	}
 	else if(size==0){
 	    start = plus;
 	    end = plus;
 	    size = 1;
-	    return true;
 	}
-	return false;
+	else{
+	    throw new IndexOutOfBoundsException("Bad Index");
+	}
     }
 
     public boolean remove(int index){
 	if(index <= size && size != 1){
-	    LNode minus = get(index);
+	    LNode minus = getNthNode(index);
 	    if (index == 0){
 		minus.getNext().setPrevious(null);
 		start = minus.getNext();
@@ -103,11 +102,7 @@ public class MyLinkedList{
 	return false;
     }
 
-    public int size(){
-	return size;
-    }
-
-    public LNode get(int index){
+    public LNode getNthNode(int index){
 	if (size > index){
 	    int i = index;
 	    LNode place = start;
@@ -123,8 +118,14 @@ public class MyLinkedList{
 
     }
 
-    public void set(LNode n, int val){
-	n.value = val;
+    public int get(int index){
+	return getNthNode(index).value;
+    }
+
+    public int set(int index, int val){
+	int old = get(index);
+	getNthNode(index).value = val;
+	return old;
     }
 
     public String toString(){
@@ -157,12 +158,11 @@ public class MyLinkedList{
     }
 
 
-    public class LNode{
+    private class LNode{
 	public int value;
 	public LNode next, previous;
 	
-	public void LNode(int n){
-	    value = n;
+	public void LNode(){
 	}
 
 	public void setVal(int n){
