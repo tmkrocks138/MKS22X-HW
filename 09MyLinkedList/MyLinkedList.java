@@ -1,5 +1,7 @@
 
-public class MyLinkedList{
+import java.util.Iterator;
+
+public class MyLinkedList implements Iterable<Integer>{
     public LNode start, end;
     private int size;
 
@@ -203,6 +205,7 @@ public class MyLinkedList{
 	System.out.println(l);
     }
 
+    public 
 
     private class LNode{
 	public int value;
@@ -234,6 +237,15 @@ public class MyLinkedList{
 	    return value;
 	}
 
+    }
+
+    public class MyLinkIterator implements Iterator<Integer>{
+	
+
+	public boolean hasNext(){
+	    if(/*next is not null*/)
+	}
+	
     }
     
 }
