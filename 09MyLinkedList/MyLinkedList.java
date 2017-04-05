@@ -29,7 +29,7 @@ public class MyLinkedList{
 
     public void add(int index, int value){
 	LNode plus = new LNode();
-	set(plus, value);
+	plus.setVal(value);
 	//System.out.println(plus.value);
 	if (size != 0){
 	    if(index == 0){
@@ -68,6 +68,33 @@ public class MyLinkedList{
 	    throw new IndexOutOfBoundsException("Bad Index");
 	}
     }
+
+
+    private void remove(LNode target){
+	if (size==1){
+	    start = null;
+	    end = null;
+	    size = 0;
+	}
+	else if(target.getNext()==null){
+	    target.getPrevious().setNext(null);
+	    end = target.getPrevious();
+	    size--;
+	}
+	else if(target.getPrevious()==null){
+	    target.getNext().setPrevious(null);
+	    start = target.getNext();
+	    size--;
+	}
+	else{
+	    LNode a = target.getPrevious();
+	    LNode c = target.getNext();
+	    a.setNext(c);
+	    c.setPrevious(a);
+	    size--;
+	}
+    }
+    
 
     public boolean remove(int index){
 	if(index <= size && size != 1){
@@ -128,6 +155,26 @@ public class MyLinkedList{
 	return old;
     }
 
+    public int indexOf(int value){
+	boolean found = false;
+	LNode temp = start;
+	int index = 0;
+	while(!found){
+	    if(temp.getVal() == value){
+		return index;
+	    }
+	    else if(temp == end){
+		found = true;
+	    }
+	    else{
+		index++;
+		temp = temp.getNext();
+	    }
+	
+	}
+	return -1;
+    }
+    
     public String toString(){
 	int temp = size;
 	String str = "[";
@@ -144,7 +191,6 @@ public class MyLinkedList{
 	str += "]";
 
 	return str;
-
     }
 
     public static void main(String[] args){
@@ -163,6 +209,7 @@ public class MyLinkedList{
 	public LNode next, previous;
 	
 	public void LNode(){
+	    value = 0;
 	}
 
 	public void setVal(int n){

@@ -26,22 +26,7 @@ public class MyLinkedList{
 
   private void addAfter(LNode location, LNode toBeAdded){/*complete this*/  }
 
-
-  private void remove(LNode target){/*complete this*/}
-
-  public String toString(){ /*complete this*/  }
-
-  public boolean add(int value){  /*complete this*/ }
-
-  public int get(int index){/*complete this*/}
-
-  public int(old value) set(int index, int value){/*complete this*/}
-
   public int indexOf(int value){/*complete this*/}
-
-  public int remove(int index){/*complete this*/}
-
-  public void add(int index,int value){/*complete this*/}
 
 
 }
