@@ -176,6 +176,11 @@ public class MyLinkedList implements Iterable<Integer>{
 	}
 	return -1;
     }
+
+    public Iterator<Integer> iterator(){
+	MyLinkIterator temp = new MyLinkIterator(this);
+	return temp;
+    }
     
     public String toString(){
 	int temp = size;
@@ -205,14 +210,19 @@ public class MyLinkedList implements Iterable<Integer>{
 	System.out.println(l);
     }
 
-    public 
+
 
     private class LNode{
 	public int value;
 	public LNode next, previous;
 	
-	public void LNode(){
+	public LNode(){
 	    value = 0;
+	}
+
+	public LNode(LNode a){
+	    //for iterator
+	    this.setNext(a);
 	}
 
 	public void setVal(int n){
@@ -240,12 +250,30 @@ public class MyLinkedList implements Iterable<Integer>{
     }
 
     public class MyLinkIterator implements Iterator<Integer>{
-	
 
-	public boolean hasNext(){
-	    if(/*next is not null*/)
+	public LNode current;
+	public MyLinkedList ll;
+
+	public MyLinkIterator(MyLinkedList listy){
+	    ll = listy;
+	    current = new LNode(listy.start);
 	}
 	
+	public boolean hasNext(){
+	    return current.getNext()!=null;
+	}
+
+	public Integer next(){
+	    if(!this.hasNext()){
+		throw new UnsupportedOperationException();
+	    }
+	    current = current.getNext();
+	    return current.getVal();
+	}
+
+	public void remove(){
+	    throw new UnsupportedOperationException();
+	}
     }
     
 }
