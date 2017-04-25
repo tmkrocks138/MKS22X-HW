@@ -2,7 +2,7 @@
 import java.util.*;
 import java.lang.*;
 
-public class PostfixMath{
+public class StackCalc{
 
     public double eval(String s){
 	String[] tokens = s.split(" ");
