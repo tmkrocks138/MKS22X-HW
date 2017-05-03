@@ -1,0 +1,11 @@
+Constructors
+ -MyHeap() - construct empty max heap
+ -MyHeap(boolean) - true: construct empty max heap, false: construct empty min heap.
+ Methods
+ -void add(String s)
+ -String remove()
+ -String peek()
+
+Private methods:
+ -pushUp()
+ -pushDown()
