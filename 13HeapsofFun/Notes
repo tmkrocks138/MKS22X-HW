@@ -6,6 +6,8 @@ Constructors
  -String remove()
  -String peek()
 
+NoSuchElementException
+
 Private methods:
  -pushUp()
  -pushDown()
