@@ -3,7 +3,7 @@ public class MyHeap{
     private ArrayList<String> heap;
     
     public MyHeap(){
-	heap = new ArrayList<String>;
+	heap = new ArrayList<String>();
 	heap.add("NOTHING!!");
 	size=0;
     }
@@ -27,18 +27,51 @@ public class MyHeap{
     private void pushUp(){
 	int index = size;
 	String move = heap.get(size);
-	String s;
-	while(move.compareTo)
+	String s = heap.get(index/2);
+	boolean done = false;
+	while(move.compareTo(s) > 0 && !done){
+	    if(index==1){
+		done = true;
+	    }
+	    else{
+	
+		heap.add(index, s);
+		index = index / 2;
+		heap.add(index, move);
+		s = heap.get(index/2);
+	    }
+	}
+	
+	
     }
 
-    private void pushDown(){
+    /*  private void pushDown(){
 	int index = 1;
-
+	String move = heap.get(1);
+	if (size % 2 == 0)
+	String s = 
+	boolean done == false;
+	while(move.compareTo(s) > 0 && !done){
+	    if(index==1){
+		done == true;
+	    }
+	    else{
+	
+		heap.add(index, s);
+		index = index / 2;
+		heap.add(index, move);
+		s = heap.get(index/2);
+	    }
     }
 
-
+    */
     public String peek(){
 	return heap.get(1);
+    }
+
+    public void swap(int i, int t){
+	String a = heap.get(i);
+	heap.set(t,a);
     }
 
 }
