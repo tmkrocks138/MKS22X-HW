@@ -69,4 +69,9 @@ public class MyHeap{
 	return heap.get(1);
     }
 
+    public void swap(int i, int t){
+	String a = heap.get(i);
+	heap.set(t,a);
+    }
+
 }
