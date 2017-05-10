@@ -1,10 +1,12 @@
+import java.util.*;
+
 public class MyHeap{
     private int size;
     private ArrayList<String> heap;
     
     public MyHeap(){
-	heap = new ArrayList<String>;
-	heap.add("NOTHING!!");
+	heap = new ArrayList<String>();
+	heap.add("");
 	size=0;
     }
 
@@ -12,7 +14,7 @@ public class MyHeap{
 	
 	heap.add(s);
 	size++;
-	heap.pushUp();
+	pushUp();
     }
 
     public String remove(){
@@ -20,7 +22,7 @@ public class MyHeap{
 	heap.remove(1);
 	heap.add(1, heap.remove(size));
 	size--;
-	heap.pushDown();
+	pushDown();
 	return ans;
     }
 
@@ -44,11 +46,20 @@ public class MyHeap{
 	String move=heap.get(index);
 	String s1=heap.get(index * 2);
 	String s2 = heap.get((index * 2) + 1);
-	while (move.compareTo(s1) < 0 || move.compareTo(s2) < 0){
+	while ((move.compareTo(s1) < 0 || move.compareTo(s2) < 0) && index < size){
 	    if (move.compareTo(s1) < 0 && s1.compareTo(s2) > 0){
 		swap(index, index * 2);
 		index = index * 2;
-		
+		move=heap.get(index);
+		s1=heap.get(index * 2);
+		s2 = heap.get((index * 2) + 1);
+	    }
+	    else if (move.compareTo(s2) < 0 && s1.compareTo(s2) < 0){
+		swap(index, index * 2 + 1);
+		index = index * 2 + 1;
+		move=heap.get(index);
+		s1=heap.get(index * 2);
+		s2 = heap.get((index * 2) + 1);
 	    }
 	}
     }

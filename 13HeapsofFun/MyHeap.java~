@@ -27,22 +27,43 @@ public class MyHeap{
     private void pushUp(){
 	int index = size;
 	String move = heap.get(size);
-	String s;
-	while(move.compareTo)
+	String s = heap.get(size / 2);
+	while(move.compareTo(s)>0){
+	    if (index <= 1){
+		return;
+	    }
+	    swap(index, index/2);
+	    index /= 2;
+	    move = heap.get(index);
+	    s = heap.get(index/2); 
+	}
     }
 
     private void pushDown(){
 	int index = 1;
-
+	String move=heap.get(index);
+	String s1=heap.get(index * 2);
+	String s2 = heap.get((index * 2) + 1);
+	while (move.compareTo(s1) < 0 || move.compareTo(s2) < 0){
+	    if (move.compareTo(s1) < 0 && s1.compareTo(s2) > 0){
+		swap(index, index * 2);
+		index = index * 2;
+		
+	    }
+	}
     }
 
 
     public String peek(){
+        if (size < 1){
+	    return "";
+	}
 	return heap.get(1);
     }
 
     public void swap(int i, int t){
 	String a = heap.get(i);
+	heap.set(i,heap.get(t));
 	heap.set(t,a);
     }
 
