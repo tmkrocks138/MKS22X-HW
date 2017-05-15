@@ -12,7 +12,14 @@ public class StackCalc{
 		values.push(apply(tokens[i],values.pop(),values.pop()));
 	    }
 	    else{
-		values.push(Double.parceDouble(tokens[i]));
+		try{
+		Double temp = Double.parceDouble(tokens[i]);
+		values.push(temp);
+		}
+		catch(IllegalArgumentException e){
+		    System.out.println("WRONG");
+		}
+		
 	    }
 	}
     }

@@ -13,7 +13,8 @@ public class StackCalc{
 	    }
 	    else{
 		try{
-		Double temp = Double.parceDouble(tokens[i]);
+		    double temp;
+		    temp = Double.parceDouble(tokens[i]);
 		values.push(temp);
 		}
 		catch(IllegalArgumentException e){

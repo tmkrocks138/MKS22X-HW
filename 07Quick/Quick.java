@@ -68,8 +68,8 @@ public class Quick{
 	return ans;
     }
 
-    public void quickSort(){
-        sortH(data, 0, data.length - 1);
+    public static void quicksort(int[] s){
+        sortH(s, 0, s.length - 1);
     }
     
     public static int[] sortH(int[] ary, int start, int end){
