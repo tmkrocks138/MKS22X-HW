@@ -1,15 +1,15 @@
 public class Merge{
 
-    public static void mergeSort(int[] ary){
-	if(ary.length == 1){
+    public static void mergesort(int[] ary){
+	if(ary.length <= 1){
 	    return;
 	}
 	else{
 	    int split = ary.length / 2;
-	    int[] left = getPart(ary, 0, split);
-	    int[] right = getPart(ary, split, ary.length);
-	    mergeSort(left);
-	    mergeSort(right);
+	    int[] left = getPart(ary, 0, split-1);
+	    int[] right = getPart(ary, split, ary.length-1);
+	    mergesort(left);
+	    mergesort(right);
 	    mergeTogether(ary, right, left);
 	}
 
@@ -17,8 +17,8 @@ public class Merge{
 
 
     private static int[] getPart(int[] ary, int start, int end){
-	int[] ans = new int[end - start];
-	for(int i = start, j = 0; i < end ; i++, j++){
+	int[] ans = new int[end - start + 1];
+	for(int i = start, j = 0; j < ans.length; i++, j++){
 	    ans[j] = ary[i];
 	}
 	return ans;
@@ -40,11 +40,11 @@ public class Merge{
 		ary[bigI] = a[i];
 		i++;
 	    }
-	    else if(b[j]<a[i]){
+	    else if(b[j] < a[i]){
 		ary[bigI] = b[j];
 		j++;
 	    }
-	    else if(a[i]<=b[j]){
+	    else if(a[i] <= b[j]){
 		ary[bigI] = a[i];
 		i++;
 	    }
