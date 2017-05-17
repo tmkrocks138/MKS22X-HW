@@ -2,12 +2,8 @@ import java.util.*;
 
 public class MyHeap{
     private int size;
-    private ArrayList<Integer> heap;
-    private int constant;
+    private ArrayList<Location> heap;
 
-    public int getConstant(){
-	return constant;
-    }
 
     public int getSize(){
 	return size;
