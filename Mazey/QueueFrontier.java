@@ -1,4 +1,4 @@
-public class QueueFrontier{
+public class QueueFrontier implements Frontier{
 
 
 }

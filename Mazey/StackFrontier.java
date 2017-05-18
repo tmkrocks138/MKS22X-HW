@@ -1,20 +1,21 @@
-java.util.*;
+import java.util.*;
 
 public class StackFrontier implements Frontier{
     
     Stack<Locations> pancake;
     
     public StackFrontier(){
-	S
+	pancake = new Stack<Location>();
     }
     
     public void add(Location l){
 	pancake.push(l);
     }
 
-    public boolean 
-
-    public void next(){
-	if
+    public Location next(){
+	//	try{
+	    return pancake.pop();
+	    //	}
+	//	catch ()
     }
 }
