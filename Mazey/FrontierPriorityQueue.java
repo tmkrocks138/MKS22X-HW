@@ -1,3 +1,7 @@
 public class FrontierPriorityQueue{
-    Location
+    //    Location
+    MyHeap line;
+    public FrontierPriorityQueue(){
+
+    }
 }

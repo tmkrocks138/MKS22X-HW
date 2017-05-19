@@ -20,9 +20,15 @@ public class Location{
 	return distToGoal;
     }
 
-    public void CompareTo(Location other){
+    public int CompareTo(Location other){
 	int a = this.getToStart() + this.getToEnd();
 	int b = other.getToStart() + other.getToEnd();
+	if (a < b){
+	    return -1;
+	}
+	else{
+	    return 1;
+	}
     }
     
 }
