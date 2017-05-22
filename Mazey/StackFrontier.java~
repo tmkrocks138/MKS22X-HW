@@ -2,8 +2,7 @@ import java.util.*;
 
 public class StackFrontier implements Frontier{
     
-    private Stack<Locations> pancake;
-    private int size;
+    Stack<Locations> pancake;
     
     public StackFrontier(){
 	pancake = new Stack<Location>();
@@ -11,24 +10,12 @@ public class StackFrontier implements Frontier{
     
     public void add(Location l){
 	pancake.push(l);
-	size++;
     }
 
-    public int getSize(){
-	return size;
-    }
-
-    public boolean hasNext(){
-	return size > 0;
-    } 
-    
     public Location next(){
-	if (this.hasNext()){
-	    size--;
+	//	try{
 	    return pancake.pop();
-	}
-	else{
-	    return null;
-	}
+	    //	}
+	//	catch ()
     }
 }

@@ -1,1 +1,76 @@
-public class 
+public class Merge{
+
+    public static void mergesort(int[] ary){
+	if(ary.length <= 1){
+	    return;
+	}
+	else{
+	    int split = ary.length / 2;
+	    int[] left = getPart(ary, 0, split-1);
+	    int[] right = getPart(ary, split, ary.length-1);
+	    mergesort(left);
+	    mergesort(right);
+	    mergeTogether(ary, right, left);
+	}
+
+    }
+
+
+    private static int[] getPart(int[] ary, int start, int end){
+	int[] ans = new int[end - start];
+	for(int i = start, j = 0; i < end ; i++, j++){
+	    ans[j] = ary[i];
+	}
+	return ans;
+
+    }
+
+    private static void mergeTogether(int[] ary, int[] a, int[] b){
+	int i = 0 , j = 0, bigI = 0;
+	boolean done = false;
+	while (!done){
+	    if(a.length == i && b.length == j){
+		done = true;
+	    }
+	    else if(a.length == i){
+		ary[bigI] = b[j];
+		j++;
+	    }
+	    else if(b.length == j){
+		ary[bigI] = a[i];
+		i++;
+	    }
+	    else if(b[j] < a[i]){
+		ary[bigI] = b[j];
+		j++;
+	    }
+	    else if(a[i] <= b[j]){
+		ary[bigI] = a[i];
+		i++;
+	    }
+	    bigI++;
+	}
+    }
+
+    public static String toString(int[] ary){
+	String ans = "";
+	for (int i = 0; i < ary.length; i++){
+	    ans += ary[i] + "  ";
+	}
+	return ans;
+    }
+
+    /*    public static void main(String[] args){
+	int[] array = new int[1000];
+	for (int i = 0; i < array.length; i++){
+	    array[i];
+	}
+	mergeSort(array);
+	System.out.println(toString(array));
+    }
+    */
+    
+
+
+
+}

@@ -37,14 +37,13 @@ public class Location{
     }
     
     public int CompareTo(Location other){
-	int a = 0, b = 0;
 	if (aStar){
-	    a = this.getToStart() + this.getToEnd();
-	    b = other.getToStart() + other.getToEnd();
+	    int a = this.getToStart() + this.getToEnd();
+	    int b = other.getToStart() + other.getToEnd();
 	}
 	else{
-	    a = this.getToEnd();
-	    b = other.getToEnd();
+	    int a = this.getToEnd();
+	    int b = other.getToEnd();
 	}
 
 	if (a < b){
