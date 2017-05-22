@@ -2,7 +2,7 @@ import java.util.*;
 
 public class StackFrontier implements Frontier{
     
-    private Stack<Locations> pancake;
+    private Stack<Location> pancake;
     private int size;
     
     public StackFrontier(){
