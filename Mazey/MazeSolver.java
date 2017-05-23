@@ -52,7 +52,13 @@ public class MazeSolver{
 		done = true;
 	    }
 	    else{
-		for(int n = 0; n < 4; n++){}
+		for(int n = 0; n < 4; n++){
+		    Location b = current.getNeighbor(mazey.getStart(), mazey.getEnd(), n, current.getAStar());
+		    if(mazey.get(b.getRow(),b.getCol()) == ' '){
+			rest.add(b);
+			mazey.set(b.getRow(),b.getCol(),'?');
+		    }
+		}
 	    }
 	}
 	
