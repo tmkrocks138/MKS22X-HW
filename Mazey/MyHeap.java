@@ -3,13 +3,18 @@ import java.util.*;
 public class MyHeap{
     private int size;
     private ArrayList<Location> heap;
-
+    private boolean astar;
 
     public int getSize(){
 	return size;
     }
-    
+
     public MyHeap(){
+	this(true);
+    }
+    
+    public MyHeap(boolean x){
+	astar = x;
 	heap = new ArrayList<Location>();
 	heap.add(null);
 	size=0;
