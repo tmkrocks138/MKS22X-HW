@@ -48,7 +48,12 @@ public class MazeSolver{
 	    Location current = rest.next();
 	    mazey.set(current.getRow(), current.getCol(), '.');
 	    if(current.getRow()==mazey.getEnd().getRow() && current.getCol()==mazey.getEnd().getCol()){
-		//place @ along maze
+		mazey.set(current.getRow(), current.getCol(), 'E');
+		Location a = current.getPrev();
+		while(a.getRow()!=mazey.getStart().getRow() && a.getCol() != mazey.getStart().getCol()){
+		    mazey.set(a.getRow(), a.getCol(), '@');
+		    a = a.getPrev();
+		}
 		done = true;
 	    }
 	    else{
@@ -61,6 +66,7 @@ public class MazeSolver{
 		}
 	    }
 	}
+	
 	
     }
     
