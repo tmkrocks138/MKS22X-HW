@@ -1,0 +1,27 @@
+Tara & Michela 
+Brief Summary of the project
+        	We are recreating the game PacMan, an arcade game where the player collects pellets and avoids ghosts. The objective of PacMan, or the player’s goal, is to eat all of the pellets and get a high score without dying.
+ 
+List of features, prioritized by importance / Detailed Description(*** is most important)
+        	*** The ghost - the villains of this game. We will make an abstract ghost class and from that extend into ***Blinky, ***Pinky, *Inky, and **Clyde. The ghost class will have the method ***getPacMan() and each of the ghost will have their own way to catch the player. Blinky will aim for the square PacMan is currently on, Pinky will aim for either 2 tiles in front of PacMan or four tiles in front and four tiles to the left of PacMan, Inky aims for the spot between Blinky and PacMan, and Clyde mirrors Blinky’s movements unless it is within 8 squares of PacMan (if it’s too close, Clyde hides in the corner). In addition to the different movements, there will also be a frightened mode, when PacMan is able to eat the ghost. For this mode, the ghost aim to escape PacMan and all aim for the spot farthest from PacMan. Other important parts of these characters are **speed. *We may add the option of a scatter mode if we have time and then add a chasing / scattering algorithm to the ghosts movement.
+        	*** PacMan – PacMan is the main character of this game, so he is very important. He is controlled by user input (wasd keys). Important aspects of the PacMan are **lives, ***Location (row, column), **points earned, and ability to eat()
+        	** Maze – the maze stays the same throughout the levels of the game. It is composed of walls and blank spaces as well as a home for the ghosts (where the ghosts start and regenerate). The maze is the layout of where everything is and is split into rows and columns.
+        	** Pellets – The pellets are the PacMan’s food. They start on every tile at the beginning of the game and disappear when PacMan crosses over them, giving the player points. In every corner there are *Super Pellets (extended from Pellets) that give the PacMan the power to eat the ghosts and the ghosts go into frightened mode.
+        	* Levels
+ 
+Roadmap of development stages with estimated dates.
+
+1)	Make the Maze (even if it is small and boring, we will touch up on in later) - Processing <By Friday>
+2)	Make Location class, possibly adapted from maze solver <By Thursday>
+3)	Make the PacMan and it moving functionality<By Monday>
+4)	Make Ghost Class<By Monday>
+5)	Adapt Maze solver for use with ghost within our own maze – Processing <By Monday>
+6)	Formulate ghost moving algorithms<By Tuesday>
+7)	Add Pellets and Super Pellets to the Maze – Processing <By Tuesday>
+8)	Finish up the display of score and other fancier parts – Processing <By Wednesday>
+ 
+How you plan to distribute the work.
+ 
+One of us (Michela) will deal mostly with processing information. This pertains to getting user input for PacMan, making the Maze, and making the project look aesthetically pleasing.
+The other one of us (Tara) will focus mostly on the ghosts algorithms and more behind the scenes interactions between the different classes and more of the just Java parts of the project.
+Smaller classes like location and pellets will be worked on together
